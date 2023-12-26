@@ -22,13 +22,13 @@ class Player {
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
     update() {
+        this.position.x += this.velocity.x
         this.position.y += this.velocity.y
+        this.sides.bottom = this.position.y + this.height
 
         // above bottom of canvas
         if (this.sides.bottom + this.velocity.y < canvas.height) {
             this.velocity.y += this.gravity
-            this.sides.bottom = this.position.y + this.height
         } else this.velocity.y = 0
-        
     }
 }
