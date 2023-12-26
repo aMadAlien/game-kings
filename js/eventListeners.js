@@ -16,7 +16,6 @@ window.addEventListener('keydown', (e) => {
 })
 
 window.addEventListener('keyup', (e) => {
-    console.log(e.key.toLocaleLowerCase());
     switch (e.key.toLocaleLowerCase()) {
         case 'a':
         case 'arrowleft':
