@@ -3,7 +3,10 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
 canvas.width = 64 * 16
-canvas.height = 64 * 8
+canvas.height = 64 * 9
+
+const parsedCollistions = collisionsLevel1.parse2D()
+const collisionBlocks = parsedCollistions.createObjectsFrom2D()
 
 const backgroundLevel1 = new Sprite({
     position: {
@@ -34,6 +37,9 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height)
 
     backgroundLevel1.draw()
+    collisionBlocks.forEach((collisionBlock => {
+        collisionBlock.draw()
+    }))
 
     player.velocity.x = 0
     if (keys.d.pressed) {
