@@ -2,7 +2,7 @@ window.addEventListener('keydown', (e) => {
     switch (e.key.toLocaleLowerCase()) {
         case 'w':
         case 'arrowup':
-            if (player.velocity.y === 0) player.velocity.y = -10
+            if (player.velocity.y === 0) player.velocity.y = -15
             break
         case 'a':
         case 'arrowleft':
