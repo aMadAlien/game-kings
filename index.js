@@ -47,7 +47,10 @@ const player = new Player({
                     opacity: 1,
                     onComplete: () => {
                         level++
+                        if (level > Object.keys(levels).length) level = 1
                         levels[level].init()
+                        player.switchSprite('idleRight')
+                        player.preventInput = false
                         gsap.to(overvay, {
                             opacity: 0
                         })
@@ -65,6 +68,8 @@ let levels = {
             parsedCollistions = collisionsLevel1.parse2D()
             collisionBlocks = parsedCollistions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
+
+            if (player.currentAnimation) player.currentAnimation.isActive = false
 
             background = new Sprite({
                 position: {
@@ -96,6 +101,8 @@ let levels = {
             player.position.x = 96
             player.position.y = 113
 
+            if (player.currentAnimation) player.currentAnimation.isActive = false
+
             background = new Sprite({
                 position: {
                     x: 0,
@@ -125,6 +132,8 @@ let levels = {
             player.collisionBlocks = collisionBlocks
             player.position.x = 750
             player.position.y = 230
+
+            if (player.currentAnimation) player.currentAnimation.isActive = false
 
             background = new Sprite({
                 position: {
@@ -175,9 +184,10 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height)
 
     background.draw()
-    collisionBlocks.forEach((collisionBlock => {
-        collisionBlock.draw()
-    }))
+    // red collisions block
+    // collisionBlocks.forEach((collisionBlock => {
+    //     collisionBlock.draw()
+    // }))
 
     doors.forEach(door => {
         door.draw()
