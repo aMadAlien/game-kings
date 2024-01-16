@@ -5,19 +5,11 @@ const c = canvas.getContext('2d')
 canvas.width = 64 * 16
 canvas.height = 64 * 9
 
-const parsedCollistions = collisionsLevel1.parse2D()
-const collisionBlocks = parsedCollistions.createObjectsFrom2D()
+let parsedCollistions, collisionBlocks, background
+let doors
 
-const backgroundLevel1 = new Sprite({
-    position: {
-        x: 0,
-        y: 0
-    },
-    imageSrc: './img/backgroundLevel1.png'
-})
 
 const player = new Player({
-    collisionBlocks,
     imageSrc: './img/king/idle.png',
     frameRate: 11,
     animations: {
@@ -52,26 +44,113 @@ const player = new Player({
             imageSrc: './img/king/enterDoor.png',
             onComplete: () => {
                 gsap.to(overvay, {
-                    opacity: 1
+                    opacity: 1,
+                    onComplete: () => {
+                        level++
+                        levels[level].init()
+                        gsap.to(overvay, {
+                            opacity: 0
+                        })
+                    }
                 })
             }
         },
     }
 })
 
-const doors = [
-    new Sprite({
-        position: {
-            x: 767,
-            y: 270
-        },
-        frameRate: 5,
-        frameBuffer: 5,
-        loop: false,
-        autoPlay: false,
-        imageSrc: './img/doorOpen.png',
-    })
-]
+let level = 1
+let levels = {
+    1: {
+        init: () => {
+            parsedCollistions = collisionsLevel1.parse2D()
+            collisionBlocks = parsedCollistions.createObjectsFrom2D()
+            player.collisionBlocks = collisionBlocks
+
+            background = new Sprite({
+                position: {
+                    x: 0,
+                    y: 0
+                },
+                imageSrc: './img/backgroundLevel1.png'
+            })
+            doors = [
+                new Sprite({
+                    position: {
+                        x: 767,
+                        y: 270
+                    },
+                    frameRate: 5,
+                    frameBuffer: 5,
+                    loop: false,
+                    autoPlay: false,
+                    imageSrc: './img/doorOpen.png',
+                })
+            ]
+        }
+    },
+    2: {
+        init: () => {
+            parsedCollistions = collisionsLevel2.parse2D()
+            collisionBlocks = parsedCollistions.createObjectsFrom2D()
+            player.collisionBlocks = collisionBlocks
+            player.position.x = 96
+            player.position.y = 113
+
+            background = new Sprite({
+                position: {
+                    x: 0,
+                    y: 0
+                },
+                imageSrc: './img/backgroundLevel2.png'
+            })
+            doors = [
+                new Sprite({
+                    position: {
+                        x: 772,
+                        y: 336
+                    },
+                    frameRate: 5,
+                    frameBuffer: 5,
+                    loop: false,
+                    autoPlay: false,
+                    imageSrc: './img/doorOpen.png',
+                })
+            ]
+        }
+    },
+    3: {
+        init: () => {
+            parsedCollistions = collisionsLevel3.parse2D()
+            collisionBlocks = parsedCollistions.createObjectsFrom2D()
+            player.collisionBlocks = collisionBlocks
+            player.position.x = 750
+            player.position.y = 230
+
+            background = new Sprite({
+                position: {
+                    x: 0,
+                    y: 0
+                },
+                imageSrc: './img/backgroundLevel3.png'
+            })
+            doors = [
+                new Sprite({
+                    position: {
+                        x: 176,
+                        y: 335
+                    },
+                    frameRate: 5,
+                    frameBuffer: 5,
+                    loop: false,
+                    autoPlay: false,
+                    imageSrc: './img/doorOpen.png',
+                })
+            ]
+        }
+    }
+}
+
+
 
 let keys = {
     w: {
@@ -95,7 +174,7 @@ function animate() {
     c.fillStyle = 'white'
     c.fillRect(0, 0, canvas.width, canvas.height)
 
-    backgroundLevel1.draw()
+    background.draw()
     collisionBlocks.forEach((collisionBlock => {
         collisionBlock.draw()
     }))
@@ -115,4 +194,5 @@ function animate() {
     c.restore()
 }
 
+levels[level].init()
 animate()
