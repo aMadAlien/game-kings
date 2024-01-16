@@ -50,6 +50,11 @@ const player = new Player({
             frameBuffer: 4,
             loop: false,
             imageSrc: './img/king/enterDoor.png',
+            onComplete: () => {
+                gsap.to(overvay, {
+                    opacity: 1
+                })
+            }
         },
     }
 })
@@ -80,6 +85,10 @@ let keys = {
     }
 }
 
+let overvay = {
+    opacity: 0
+}
+
 function animate() {
     window.requestAnimationFrame(animate)
 
@@ -98,6 +107,12 @@ function animate() {
     player.handleInput(keys)
     player.draw()
     player.update()
+
+    c.save()
+    c.globalAlpha = overvay.opacity
+    c.fillStyle = 'black'
+    c.fillRect(0, 0, canvas.width, canvas.height)
+    c.restore()
 }
 
 animate()
