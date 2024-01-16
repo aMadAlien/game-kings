@@ -6,7 +6,7 @@ canvas.width = 64 * 16
 canvas.height = 64 * 9
 
 let parsedCollistions, collisionBlocks, background
-let doors
+let doors, diamonds
 
 
 const player = new Player({
@@ -71,6 +71,28 @@ let levels = {
 
             if (player.currentAnimation) player.currentAnimation.isActive = false
 
+            diamonds = [
+                new Sprite({
+                    position: {
+                        x: 567,
+                        y: 350
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/items/diamond.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 367,
+                        y: 220
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/items/diamond.png',
+                })
+            ]
+            player.diamonds = diamonds
+
             background = new Sprite({
                 position: {
                     x: 0,
@@ -103,6 +125,37 @@ let levels = {
 
             if (player.currentAnimation) player.currentAnimation.isActive = false
 
+            diamonds = [
+                new Sprite({
+                    position: {
+                        x: 310,
+                        y: 90
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/items/diamond.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 180,
+                        y: 450
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/items/diamond.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 550,
+                        y: 450
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/items/diamond.png',
+                })
+            ]
+            player.diamonds = diamonds
+
             background = new Sprite({
                 position: {
                     x: 0,
@@ -134,6 +187,37 @@ let levels = {
             player.position.y = 230
 
             if (player.currentAnimation) player.currentAnimation.isActive = false
+
+            diamonds = [
+                new Sprite({
+                    position: {
+                        x: 570,
+                        y: 200
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/items/diamond.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 800,
+                        y: 350
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/items/diamond.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 350,
+                        y: 390
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/items/diamond.png',
+                })
+            ]
+            player.diamonds = diamonds
 
             background = new Sprite({
                 position: {
@@ -188,6 +272,10 @@ function animate() {
     // collisionBlocks.forEach((collisionBlock => {
     //     collisionBlock.draw()
     // }))
+
+    diamonds.forEach(diamond => {
+        diamond.draw()
+    })
 
     doors.forEach(door => {
         door.draw()

@@ -1,6 +1,6 @@
 class Player extends Sprite {
     constructor({
-        collisionBlocks = [],
+        collisionBlocks = [], diamonds,
         imageSrc, frameRate, animations, loop
     }) {
         super({ imageSrc, frameRate, animations, loop })
@@ -21,6 +21,8 @@ class Player extends Sprite {
         this.gravity = 1
 
         this.collisionBlocks = collisionBlocks
+        this.diamonds = diamonds
+        this.score = 0
     }
 
     update() {
@@ -38,6 +40,7 @@ class Player extends Sprite {
         this.updateHitbox()
 
         this.checkForVerticalCollisions()
+        this.diamonds && this.checkDiamonds()
     }
     handleInput(keys) {
         if (player.preventInput) return
@@ -75,6 +78,24 @@ class Player extends Sprite {
             },
             width: 50,
             height: 53
+        }
+    }
+    checkDiamonds() {
+        for (let i = 0; i < this.diamonds.length; i++) {
+            const diamond = this.diamonds[i]
+            if (
+                player.hitbox.position.x <= diamond.position.x + diamond.width &&
+                player.hitbox.position.x + player.hitbox.width >= diamond.position.x &&
+                player.hitbox.position.y + player.hitbox.height >= diamond.position.y &&
+                player.hitbox.position.y <= diamond.position.y + diamond.height
+            ) {
+                const diamondId = this.diamonds.indexOf(diamond)
+                if (diamondId > -1) {
+                    this.diamonds.splice(diamondId, 1)
+                    this.score++
+                    document.getElementById('score').textContent = this.score
+                }
+            }
         }
     }
     checkForHofizontalCollisions() {

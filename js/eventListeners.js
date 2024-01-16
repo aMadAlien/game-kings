@@ -9,7 +9,8 @@ window.addEventListener('keydown', (e) => {
                     player.hitbox.position.x + player.hitbox.width <= door.position.x + door.width &&
                     player.hitbox.position.x >= door.position.x &&
                     player.hitbox.position.y + player.hitbox.height >= door.position.y &&
-                    player.hitbox.position.y <= door.position.y + door.height
+                    player.hitbox.position.y <= door.position.y + door.height &&
+                    !player.diamonds.length
                 ) {
                     player.velocity.x = 0
                     player.velocity.y = 0
