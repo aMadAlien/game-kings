@@ -6,7 +6,7 @@ canvas.width = 64 * 16
 canvas.height = 64 * 9
 
 let parsedCollistions, collisionBlocks, background
-let doors, diamonds, traps, boxes
+let doors, diamonds, traps, boxes, pigs
 
 
 const player = new Player({
@@ -119,6 +119,62 @@ let levels = {
     },
     2: {
         init: () => {
+            parsedCollistions = collisionsLevel1.parse2D()
+            collisionBlocks = parsedCollistions.createObjectsFrom2D()
+            player.collisionBlocks = collisionBlocks
+
+            if (player.currentAnimation) player.currentAnimation.isActive = false
+
+            diamonds = [
+                new Sprite({
+                    position: {
+                        x: 150,
+                        y: 270
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/items/diamond.png',
+                })
+            ]
+            player.diamonds = diamonds
+
+            pigs = [
+                new Sprite({
+                    position: {
+                        x: 567,
+                        y: 315
+                    },
+                    frameRate: 11,
+                    frameBuffer: 2,
+                    imageSrc: './img/pigs/idle.png',
+                })
+            ]
+            player.pigs = pigs
+
+            background = new Sprite({
+                position: {
+                    x: 0,
+                    y: 0
+                },
+                imageSrc: './img/backgroundLevel1.png'
+            })
+            doors = [
+                new Sprite({
+                    position: {
+                        x: 767,
+                        y: 270
+                    },
+                    frameRate: 5,
+                    frameBuffer: 5,
+                    loop: false,
+                    autoPlay: false,
+                    imageSrc: './img/doorOpen.png',
+                })
+            ]
+        }
+    },
+    3: {
+        init: () => {
             parsedCollistions = collisionsLevel2.parse2D()
             collisionBlocks = parsedCollistions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
@@ -195,7 +251,7 @@ let levels = {
             ]
         }
     },
-    3: {
+    4: {
         init: () => {
             parsedCollistions = collisionsLevel3.parse2D()
             collisionBlocks = parsedCollistions.createObjectsFrom2D()
@@ -312,6 +368,10 @@ function animate() {
 
     boxes?.forEach(box => {
         box.draw()
+    })
+
+    pigs?.forEach(pig => {
+        pig.draw()
     })
 
     doors.forEach(door => {
