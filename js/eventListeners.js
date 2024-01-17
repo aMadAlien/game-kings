@@ -30,6 +30,9 @@ window.addEventListener('keydown', (e) => {
         case 'arrowright':
             keys.d.pressed = true
             break
+        case 'e':
+            keys.e.pressed = true
+            break
     }
 })
 
@@ -42,6 +45,9 @@ window.addEventListener('keyup', (e) => {
         case 'd':
         case 'arrowright':
             keys.d.pressed = false
+            break
+        case 'e':
+            keys.e.pressed = false
             break
     }
 })

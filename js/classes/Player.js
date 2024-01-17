@@ -61,6 +61,10 @@ class Player extends Sprite {
             player.switchSprite('runLeft')
             player.velocity.x = -5
             player.lastDirection = 'left'
+        } else if (keys.e.pressed) {
+            if (player.lastDirection === 'left')
+                player.switchSprite('attackLeft')
+            else player.switchSprite('attackRight')
         } else {
             if (player.lastDirection === 'left')
                 player.switchSprite('idleLeft')

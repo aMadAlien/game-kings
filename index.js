@@ -38,6 +38,19 @@ const player = new Player({
             loop: true,
             imageSrc: './img/king/runLeft.png',
         },
+        attackRight: {
+            frameRate: 3,
+            frameBuffer: 1,
+            loop: false,
+            imageSrc: './img/king/attackRight.png',
+        },
+        attackLeft: {
+            frameRate: 3,
+            frameBuffer: 1,
+            loop: false,
+            autoPlay: false,
+            imageSrc: './img/king/attackLeft.png',
+        },
         enterDoor: {
             frameRate: 8,
             frameBuffer: 4,
@@ -338,6 +351,9 @@ let keys = {
         pressed: false
     },
     d: {
+        pressed: false
+    },
+    e: {
         pressed: false
     }
 }
