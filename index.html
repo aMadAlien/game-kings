@@ -1,58 +1,32 @@
-<style>
-    body {
-        background-color: #333;
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    .score-block {
-        position: absolute;
-        top: 20px;
-        left: 40px;
-        font-size: 24px;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>Document</title>
+</head>
 
-    #score {
-        display: inline-block;
-    }
+<body>
+    <div class="score-block">Score:
+        <div id="score">0</div>
+    </div>
 
-    #restart {
-        position: absolute;
-        top: 20px;
-        right: 220px;
+    <button id="restart">Restart</button>
 
-        display: inline-block;
-        padding: 5px 10px;
-        font-size: 16px;
-        font-weight: 600;
-        text-align: center;
-        text-decoration: none;
-        cursor: pointer;
-        border: 2px solid #948b8b;
-        border-radius: 5px;
-        color: #ffffff;
-        background-color: #948b8b;
-        transition: background-color 0.3s ease;
-    }
+    <canvas></canvas>
 
-    #restart:hover {
-        background-color: #66696b;
-    }
-</style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"
+        integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+udH4LvmYjLiGp37yHB7FfaPBo8ly178m9g4Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/data/collisions.js"></script>
+    <script src="js/classes/CollisionBlock.js"></script>
+    <script src="js/classes/Sprite.js"></script>
+    <script src="js/classes/Player.js"></script>
+    <script src="js/eventListeners.js"></script>
+    <script src="index.js"></script>
+</body>
 
-<div class="score-block">Score:
-    <div id="score">0</div>
-</div>
-
-<button id="restart">Restart</button>
-
-<canvas></canvas>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"
-    integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+udH4LvmYjLiGp37yHB7FfaPBo8ly178m9g4Q=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/utils.js"></script>
-<script src="js/data/collisions.js"></script>
-<script src="js/classes/CollisionBlock.js"></script>
-<script src="js/classes/Sprite.js"></script>
-<script src="js/classes/Player.js"></script>
-<script src="js/eventListeners.js"></script>
-<script src="index.js"></script>
+</html>
