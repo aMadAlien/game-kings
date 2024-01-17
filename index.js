@@ -6,7 +6,7 @@ canvas.width = 64 * 16
 canvas.height = 64 * 9
 
 let parsedCollistions, collisionBlocks, background
-let doors, diamonds, traps
+let doors, diamonds, traps, boxes
 
 
 const player = new Player({
@@ -63,7 +63,7 @@ const player = new Player({
     }
 })
 
-let level = 1
+let level = 2
 let levels = {
     1: {
         init: () => {
@@ -157,6 +157,21 @@ let levels = {
                 })
             ]
             player.diamonds = diamonds
+
+            boxes = [
+                new Sprite({
+                    position: {
+                        x: 330,
+                        y: 450
+                    },
+                    frameRate: 1,
+                    frameBuffer: 5,
+                    loop: false,
+                    autoPlay: false,
+                    imageSrc: './img/items/box.png',
+                })
+            ]
+            player.boxes = boxes
 
             background = new Sprite({
                 position: {
@@ -293,6 +308,10 @@ function animate() {
 
     traps?.forEach(trap => {
         trap.draw()
+    })
+
+    boxes?.forEach(box => {
+        box.draw()
     })
 
     doors.forEach(door => {

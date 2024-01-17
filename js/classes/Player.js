@@ -1,6 +1,6 @@
 class Player extends Sprite {
     constructor({
-        collisionBlocks = [], diamonds, traps, onRestart,
+        collisionBlocks = [], diamonds, traps, boxes, onRestart,
         imageSrc, frameRate, animations, loop
     }) {
         super({ imageSrc, frameRate, animations, loop })
@@ -25,6 +25,7 @@ class Player extends Sprite {
         this.score = 0
 
         this.traps = traps
+        this.boxes = boxes
         this.onRestart = onRestart
     }
 
@@ -45,6 +46,7 @@ class Player extends Sprite {
         this.checkForVerticalCollisions()
         this.diamonds && this.checkDiamonds()
         this.traps && this.checkTraps()
+        this.boxes && this.checkBoxes()
     }
     handleInput(keys) {
         if (player.preventInput) return
@@ -82,6 +84,37 @@ class Player extends Sprite {
             },
             width: 50,
             height: 53
+        }
+    }
+    checkBoxes() {
+        for (let i = 0; i < this.boxes.length; i++) {
+            const box = this.boxes[i]
+
+            if (
+                player.hitbox.position.x <= box.position.x + box.width &&
+                player.hitbox.position.x + player.hitbox.width >= box.position.x &&
+                player.hitbox.position.y + .01 + player.hitbox.height >= box.position.y &&
+                player.hitbox.position.y + .01 <= box.position.y + box.height
+            ) {
+                // move right
+                if (this.velocity.x < 0 && this.velocity.y <= 0) {
+                    box.position.x = this.hitbox.position.x - box.width + 0.01
+                    break
+                }
+
+                // move left
+                if (this.velocity.x > 0 && this.velocity.y <= 0) {
+                    box.position.x = this.hitbox.position.x + this.hitbox.width - 0.01
+                    break
+                }
+
+                if (this.velocity.y > 0) {
+                    this.velocity.y = 0
+                    const offset = this.hitbox.position.y - this.position.y + this.hitbox.height
+                    this.position.y = box.position.y - offset
+                    break
+                }
+            }
         }
     }
     checkTraps() {
