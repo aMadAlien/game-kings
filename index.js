@@ -6,12 +6,23 @@ canvas.width = 64 * 16
 canvas.height = 64 * 9
 
 let parsedCollistions, collisionBlocks, background
-let doors, diamonds
+let doors, diamonds, traps
 
 
 const player = new Player({
     imageSrc: './img/king/idle.png',
     frameRate: 11,
+    onRestart: () => {
+        gsap.to(overvay, {
+            opacity: 1,
+            onComplete: () => {
+                gsap.to(overvay, {
+                    opacity: 0,
+                })
+                levels[level].init()
+            }
+        })
+    },
     animations: {
         idleRight: {
             frameRate: 11,
@@ -46,6 +57,7 @@ const player = new Player({
                 gsap.to(overvay, {
                     opacity: 1,
                     onComplete: () => {
+                        traps = []
                         level++
                         if (level > Object.keys(levels).length) level = 1
                         levels[level].init()
@@ -219,6 +231,18 @@ let levels = {
             ]
             player.diamonds = diamonds
 
+
+            traps = [
+                new Sprite({
+                    position: {
+                        x: 400,
+                        y: 433
+                    },
+                    imageSrc: './img/items/sharpTrap.png',
+                })
+            ]
+            player.traps = traps
+
             background = new Sprite({
                 position: {
                     x: 0,
@@ -275,6 +299,10 @@ function animate() {
 
     diamonds.forEach(diamond => {
         diamond.draw()
+    })
+
+    traps?.forEach(trap => {
+        trap.draw()
     })
 
     doors.forEach(door => {

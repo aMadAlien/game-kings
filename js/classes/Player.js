@@ -1,6 +1,6 @@
 class Player extends Sprite {
     constructor({
-        collisionBlocks = [], diamonds,
+        collisionBlocks = [], diamonds, traps, onRestart,
         imageSrc, frameRate, animations, loop
     }) {
         super({ imageSrc, frameRate, animations, loop })
@@ -23,6 +23,9 @@ class Player extends Sprite {
         this.collisionBlocks = collisionBlocks
         this.diamonds = diamonds
         this.score = 0
+
+        this.traps = traps
+        this.onRestart = onRestart
     }
 
     update() {
@@ -41,6 +44,7 @@ class Player extends Sprite {
 
         this.checkForVerticalCollisions()
         this.diamonds && this.checkDiamonds()
+        this.traps && this.checkTraps()
     }
     handleInput(keys) {
         if (player.preventInput) return
@@ -78,6 +82,23 @@ class Player extends Sprite {
             },
             width: 50,
             height: 53
+        }
+    }
+    checkTraps() {
+        for (let i = 0; i < this.traps.length; i++) {
+            const trap = this.traps[i]
+            if (
+                player.hitbox.position.x <= trap.position.x + trap.width &&
+                player.hitbox.position.x + player.hitbox.width >= trap.position.x &&
+                player.hitbox.position.y + player.hitbox.height >= trap.position.y &&
+                player.hitbox.position.y <= trap.position.y + trap.height
+            ) {
+                player.position.x -= 70
+                player.position.y -= 100
+                this.score = 0
+                document.getElementById('score').textContent = this.score
+                player.onRestart()
+            }
         }
     }
     checkDiamonds() {
