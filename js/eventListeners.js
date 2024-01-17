@@ -45,3 +45,7 @@ window.addEventListener('keyup', (e) => {
             break
     }
 })
+
+document.getElementById('restart').addEventListener('click', () => {
+    player.restart()
+})

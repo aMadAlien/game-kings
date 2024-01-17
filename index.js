@@ -12,17 +12,7 @@ let doors, diamonds, traps
 const player = new Player({
     imageSrc: './img/king/idle.png',
     frameRate: 11,
-    onRestart: () => {
-        gsap.to(overvay, {
-            opacity: 1,
-            onComplete: () => {
-                gsap.to(overvay, {
-                    opacity: 0,
-                })
-                levels[level].init()
-            }
-        })
-    },
+    onRestart: () => levels[level].init(),
     animations: {
         idleRight: {
             frameRate: 11,

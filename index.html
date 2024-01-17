@@ -9,14 +9,40 @@
         left: 40px;
         font-size: 24px;
     }
+
     #score {
         display: inline-block;
+    }
+
+    #restart {
+        position: absolute;
+        top: 20px;
+        right: 220px;
+
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border: 2px solid #948b8b;
+        border-radius: 5px;
+        color: #ffffff;
+        background-color: #948b8b;
+        transition: background-color 0.3s ease;
+    }
+
+    #restart:hover {
+        background-color: #66696b;
     }
 </style>
 
 <div class="score-block">Score:
     <div id="score">0</div>
 </div>
+
+<button id="restart">Restart</button>
 
 <canvas></canvas>
 

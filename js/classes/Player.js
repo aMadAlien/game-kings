@@ -95,11 +95,22 @@ class Player extends Sprite {
             ) {
                 player.position.x -= 70
                 player.position.y -= 100
+                this.restart()
+            }
+        }
+    }
+    restart() {
+        gsap.to(overvay, {
+            opacity: 1,
+            onComplete: () => {
+                gsap.to(overvay, {
+                    opacity: 0,
+                })
                 this.score = 0
                 document.getElementById('score').textContent = this.score
                 player.onRestart()
             }
-        }
+        })
     }
     checkDiamonds() {
         for (let i = 0; i < this.diamonds.length; i++) {
