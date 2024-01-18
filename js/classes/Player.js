@@ -15,6 +15,8 @@ class Player extends Sprite {
             y: 0
         }
 
+        this.lives = 3
+
         this.sides = {
             bottom: this.position.y + this.height
         }
@@ -43,6 +45,7 @@ class Player extends Sprite {
         this.applyGravity()
 
         this.updateHitbox()
+        this.updateLives()
 
         this.checkForVerticalCollisions()
         this.diamonds && this.checkDiamonds()
@@ -92,6 +95,32 @@ class Player extends Sprite {
             height: 53
         }
     }
+    hitPig() {
+        for (let i = 0; i < this.pigs.length; i++) {
+            const kingX = this.position.x
+            const kingX2 = this.position.x + this.width
+            const pig = this.pigs[i]
+            const pigX = pig.hitbox.position.x
+            const pigX2 = pigX + pig.size.width
+
+            console.log(this.position.x + this.width, pig.hitbox.position.x);
+            if (
+                kingX2 === pigX2 || kingX === pigX ||
+                kingX2 > pigX2 && kingX < pigX ||
+                kingX > pigX && kingX2 > pigX
+            ) {
+                pig.hitted()
+                console.log('kill');
+            }
+        }
+    }
+    updateLives() {
+        document.getElementById('lives').textContent = this.lives
+        // console.log(this.lives);
+        if (this.lives === 0) {
+            this.restart()
+        }
+    }
     checkPigs() {
         for (let i = 0; i < this.pigs.length; i++) {
             const pig = this.pigs[i]
@@ -107,13 +136,17 @@ class Player extends Sprite {
                 let distance = 20
 
                 if (this.lastDirection === 'left') {
-                    this.position.x += 20
+                    const offset = pig.hitbox.position.x + pig.size.width - this.hitbox.position.x
+                    this.position.x += 20 + offset
                     this.switchSprite('hitLeft')
                 } else {
                     distance = -20
+                    const offset = this.hitbox.position.x + this.hitbox.width - pig.hitbox.position.x
+                    this.position.x -= 20 + offset
                     this.switchSprite('hitRight')
-                    this.position.x -= 20
                 }
+
+                this.lives--
 
                 setTimeout(() => {
                     this.preventInput = false
@@ -175,6 +208,7 @@ class Player extends Sprite {
                 gsap.to(overvay, {
                     opacity: 0,
                 })
+                this.lives = 3
                 this.score = 0
                 document.getElementById('score').textContent = this.score
                 player.onRestart()

@@ -77,6 +77,9 @@ const player = new Player({
                     onComplete: () => {
                         traps = []
                         pigs = []
+                        player.score = 0
+                        document.getElementById('score').textContent = player.score
+                        player.lives = 3
                         level++
                         if (level > Object.keys(levels).length) level = 1
                         levels[level].init()
@@ -180,7 +183,7 @@ let levels = {
                         width: 48,
                         height: 47
                         width: 35,
-                        height: 40
+                        height: 35
                     },
                     animations: {
                         hitLeft: {

@@ -5,6 +5,7 @@ class Pig extends Sprite {
         super({ imageSrc, frameRate, animations, loop })
         this.position = position
         this.size = size
+        this.lives = 3
     }
 
     update() {
@@ -18,7 +19,12 @@ class Pig extends Sprite {
             position: {
                 x: this.position.x + 33,
                 y: this.position.y + 30
+                y: this.position.y + 35
             }
         }
+    }
+    hitted() {
+        this.lives--
+        
     }
 }
