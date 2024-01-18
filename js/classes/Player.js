@@ -101,9 +101,8 @@ class Player extends Sprite {
             const kingX2 = this.position.x + this.width
             const pig = this.pigs[i]
             const pigX = pig.hitbox.position.x
-            const pigX2 = pigX + pig.size.width
+            const pigX2 = pigX + pig.size.width / 2
 
-            console.log(this.position.x + this.width, pig.hitbox.position.x);
             if (
                 kingX2 === pigX2 || kingX === pigX ||
                 kingX2 > pigX2 && kingX < pigX ||
@@ -116,9 +115,9 @@ class Player extends Sprite {
     }
     updateLives() {
         document.getElementById('lives').textContent = this.lives
-        // console.log(this.lives);
         if (this.lives === 0) {
             this.restart()
+            this.lives = 3
         }
     }
     checkPigs() {
@@ -208,7 +207,7 @@ class Player extends Sprite {
                 gsap.to(overvay, {
                     opacity: 0,
                 })
-                this.lives = 3
+                document.getElementById('lives').textContent = this.lives
                 this.score = 0
                 document.getElementById('score').textContent = this.score
                 player.onRestart()

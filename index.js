@@ -55,7 +55,7 @@ const player = new Player({
         hitRight: {
             frameRate: 1,
             frameBuffer: 1,
-            loop: true,
+            loop: false,
             autoPlay: false,
             imageSrc: './img/king/hitRight.png',
         },
@@ -77,9 +77,11 @@ const player = new Player({
                     onComplete: () => {
                         traps = []
                         pigs = []
+                        player.pigs = []
                         player.score = 0
                         document.getElementById('score').textContent = player.score
                         player.lives = 3
+                        document.getElementById('lives').textContent = player.lives
                         level++
                         if (level > Object.keys(levels).length) level = 1
                         levels[level].init()
@@ -95,7 +97,7 @@ const player = new Player({
     }
 })
 
-let level = 2
+let level = 1
 let levels = {
     1: {
         init: () => {
@@ -154,6 +156,8 @@ let levels = {
             parsedCollistions = collisionsLevel1.parse2D()
             collisionBlocks = parsedCollistions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
+            player.position.x = 200
+            player.position.y = 200
 
             if (player.currentAnimation) player.currentAnimation.isActive = false
 
@@ -174,31 +178,37 @@ let levels = {
                 new Pig({
                     imageSrc: './img/pigs/idle.png',
                     frameRate: 11,
-                    frameBuffer: 2,
+                    frameBuffer: 1,
+                    die: (index) => pigs.splice(index, 1),
                     position: {
                         x: 567,
                         y: 315
                     },
                     size: {
-                        width: 48,
-                        height: 47
                         width: 35,
                         height: 35
                     },
                     animations: {
+                        idle: {
+                            frameRate: 11,
+                            frameBuffer: 1,
+                            loop: false,
+                            autoPlay: false,
+                            imageSrc: './img/pigs/idle.png',
+                        },
                         hitLeft: {
                             frameRate: 2,
                             frameBuffer: 1,
                             loop: false,
                             autoPlay: false,
-                            imageSrc: './img/king/hitLeft.png',
+                            imageSrc: './img/pigs/hitLeft.png',
                         },
                         hitRight: {
                             frameRate: 2,
                             frameBuffer: 1,
                             loop: false,
                             autoPlay: false,
-                            imageSrc: './img/king/hitRight.png',
+                            imageSrc: './img/pigs/hitRight.png',
                         },
                     }
                 })
@@ -396,7 +406,6 @@ let keys = {
     },
     e: {
         pressed: false
-    q: {
     }
 }
 
