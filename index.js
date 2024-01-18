@@ -152,14 +152,34 @@ let levels = {
             player.diamonds = diamonds
 
             pigs = [
-                new Sprite({
+                new Pig({
+                    imageSrc: './img/pigs/idle.png',
+                    frameRate: 11,
+                    frameBuffer: 2,
                     position: {
                         x: 567,
                         y: 315
                     },
-                    frameRate: 11,
-                    frameBuffer: 2,
-                    imageSrc: './img/pigs/idle.png',
+                    size: {
+                        width: 48,
+                        height: 47
+                    },
+                    animations: {
+                        hitLeft: {
+                            frameRate: 2,
+                            frameBuffer: 1,
+                            loop: false,
+                            autoPlay: false,
+                            imageSrc: './img/king/hitLeft.png',
+                        },
+                        hitRight: {
+                            frameRate: 2,
+                            frameBuffer: 1,
+                            loop: false,
+                            autoPlay: false,
+                            imageSrc: './img/king/hitRight.png',
+                        },
+                    }
                 })
             ]
             player.pigs = pigs
@@ -355,6 +375,7 @@ let keys = {
     },
     e: {
         pressed: false
+    q: {
     }
 }
 
@@ -388,6 +409,7 @@ function animate() {
 
     pigs?.forEach(pig => {
         pig.draw()
+        pig.update()
     })
 
     doors.forEach(door => {
