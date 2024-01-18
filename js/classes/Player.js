@@ -1,7 +1,7 @@
 class Player extends Sprite {
     constructor({
         collisionBlocks = [], diamonds, traps, boxes, onRestart,
-        imageSrc, frameRate, animations, loop
+        imageSrc, frameRate, animations, loop, pigs
     }) {
         super({ imageSrc, frameRate, animations, loop })
 
@@ -26,6 +26,7 @@ class Player extends Sprite {
 
         this.traps = traps
         this.boxes = boxes
+        this.pigs = pigs
         this.onRestart = onRestart
     }
 
@@ -47,6 +48,7 @@ class Player extends Sprite {
         this.diamonds && this.checkDiamonds()
         this.traps && this.checkTraps()
         this.boxes && this.checkBoxes()
+        this.pigs && this.checkPigs()
     }
     handleInput(keys) {
         if (player.preventInput) return
@@ -88,6 +90,36 @@ class Player extends Sprite {
             },
             width: 50,
             height: 53
+        }
+    }
+    checkPigs() {
+        for (let i = 0; i < this.pigs.length; i++) {
+            const pig = this.pigs[i]
+
+            if (
+                this.hitbox.position.x <= pig.hitbox.position.x + pig.size.width &&
+                this.hitbox.position.x + this.hitbox.width >= pig.hitbox.position.x &&
+                this.hitbox.position.y + this.hitbox.height >= pig.hitbox.position.y &&
+                this.hitbox.position.y <= pig.hitbox.position.y + pig.size.height
+            ) {
+                this.preventInput = true
+                this.velocity.x = 0
+                let distance = 20
+
+                if (this.lastDirection === 'left') {
+                    this.position.x += 20
+                    this.switchSprite('hitLeft')
+                } else {
+                    distance = -20
+                    this.switchSprite('hitRight')
+                    this.position.x -= 20
+                }
+
+                setTimeout(() => {
+                    this.preventInput = false
+                    this.position.x += distance
+                }, 100);
+            }
         }
     }
     checkBoxes() {

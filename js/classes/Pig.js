@@ -16,8 +16,8 @@ class Pig extends Sprite {
     updateHitbox() {
         this.hitbox = {
             position: {
-                x: this.position.x + 25,
-                y: this.position.y + 22
+                x: this.position.x + 33,
+                y: this.position.y + 30
             }
         }
     }

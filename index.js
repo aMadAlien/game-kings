@@ -42,6 +42,7 @@ const player = new Player({
             frameRate: 3,
             frameBuffer: 1,
             loop: false,
+            autoPlay: false,
             imageSrc: './img/king/attackRight.png',
         },
         attackLeft: {
@@ -50,6 +51,20 @@ const player = new Player({
             loop: false,
             autoPlay: false,
             imageSrc: './img/king/attackLeft.png',
+        },
+        hitRight: {
+            frameRate: 1,
+            frameBuffer: 1,
+            loop: true,
+            autoPlay: false,
+            imageSrc: './img/king/hitRight.png',
+        },
+        hitLeft: {
+            frameRate: 1,
+            frameBuffer: 1,
+            loop: false,
+            autoPlay: false,
+            imageSrc: './img/king/hitLeft.png',
         },
         enterDoor: {
             frameRate: 8,
@@ -61,6 +76,7 @@ const player = new Player({
                     opacity: 1,
                     onComplete: () => {
                         traps = []
+                        pigs = []
                         level++
                         if (level > Object.keys(levels).length) level = 1
                         levels[level].init()
@@ -163,6 +179,8 @@ let levels = {
                     size: {
                         width: 48,
                         height: 47
+                        width: 35,
+                        height: 40
                     },
                     animations: {
                         hitLeft: {
