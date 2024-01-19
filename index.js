@@ -7,12 +7,16 @@ canvas.height = 64 * 9
 
 let parsedCollistions, collisionBlocks, background
 let doors, diamonds, traps, boxes, pigs
+let deadPigs = []
 
 
 const player = new Player({
     imageSrc: './img/king/idle.png',
     frameRate: 11,
-    onRestart: () => levels[level].init(),
+    onRestart: () => {
+        deadPigs = []
+        levels[level].init()
+    },
     animations: {
         idleRight: {
             frameRate: 11,
@@ -77,7 +81,7 @@ const player = new Player({
                     onComplete: () => {
                         traps = []
                         pigs = []
-                        player.pigs = []
+                        deadPigs = []
                         player.score = 0
                         document.getElementById('score').textContent = player.score
                         player.lives = 3
@@ -97,7 +101,17 @@ const player = new Player({
     }
 })
 
-let level = 1
+function pigDie(index) {
+    const deadPig = pigs[index]
+    deadPigs.push(new Sprite({
+        position: deadPig.hitbox.position,
+        frameRate: 1,
+        imageSrc: './img/pigs/lyingRight.png',
+    }))
+
+    pigs.splice(index, 1)
+}
+
 let levels = {
     1: {
         init: () => {
@@ -179,7 +193,7 @@ let levels = {
                     imageSrc: './img/pigs/idle.png',
                     frameRate: 11,
                     frameBuffer: 1,
-                    die: (index) => pigs.splice(index, 1),
+                    die: (index) => pigDie(index),
                     position: {
                         x: 567,
                         y: 315
@@ -209,6 +223,13 @@ let levels = {
                             loop: false,
                             autoPlay: false,
                             imageSrc: './img/pigs/hitRight.png',
+                        },
+                        deadRight: {
+                            frameRate: 4,
+                            frameBuffer: 1,
+                            loop: false,
+                            autoPlay: false,
+                            imageSrc: './img/pigs/deadRight.png',
                         },
                     }
                 })
@@ -440,6 +461,10 @@ function animate() {
     pigs?.forEach(pig => {
         pig.draw()
         pig.update()
+    })
+
+    deadPigs?.forEach(deadPig => {
+        deadPig.draw()
     })
 
     doors.forEach(door => {

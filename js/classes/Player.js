@@ -104,12 +104,11 @@ class Player extends Sprite {
             const pigX2 = pigX + pig.size.width / 2
 
             if (
-                kingX2 === pigX2 || kingX === pigX ||
-                kingX2 > pigX2 && kingX < pigX ||
-                kingX > pigX && kingX2 > pigX
+                kingX2 === pigX || pigX2 === kingX ||
+                kingX2 > pigX2 && kingX < pigX2 ||
+                kingX > pigX && kingX < pigX2
             ) {
                 pig.hitted()
-                console.log('kill');
             }
         }
     }

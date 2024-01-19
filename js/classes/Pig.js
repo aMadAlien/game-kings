@@ -26,19 +26,17 @@ class Pig extends Sprite {
     hitted() {
         this.lives--
 
-        if (player.lastDirection === 'left') {
-            this.position.x -= 20
+        if (player.lastDirection === 'left')
             this.switchSprite('hitLeft')
-        } else {
-            this.position.x += 20
-            this.switchSprite('hitRight')
-        }
+        else this.switchSprite('hitRight')
 
-        setTimeout(() => {
-            if (this.lives === 0)
+        if (this.lives === 0)
+            setTimeout(() => {
                 this.die(pigs.indexOf(this))
-            else this.switchSprite('idle')
-        }, 200);
+                this.switchSprite('deadRight')
+            }, 200)
+        else
+            setTimeout(() => this.switchSprite('idle'), 200);
     }
     switchSprite(name) {
         if (this.image === this.animations[name].image) return
