@@ -102,11 +102,14 @@ const player = new Player({
 })
 
 function pigDie(index, diraction) {
+function pigDie(index) {
+    const direction = player.lastDirection.charAt(0).toUpperCase() + player.lastDirection.slice(1)
     const deadPig = pigs[index]
     deadPigs.push(new Sprite({
         position: deadPig.hitbox.position,
         frameRate: 1,
         imageSrc: `./img/pigs/lying${diraction}.png`,
+        imageSrc: `./img/pigs/lying${direction}.png`,
     }))
 
     pigs.splice(index, 1)
@@ -194,6 +197,7 @@ let levels = {
                     frameRate: 11,
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
+                    direction: 'Right',
                     position: {
                         x: 567,
                         y: 315
@@ -202,36 +206,6 @@ let levels = {
                         width: 35,
                         height: 35
                     },
-                    animations: {
-                        idle: {
-                            frameRate: 11,
-                            frameBuffer: 1,
-                            loop: false,
-                            autoPlay: false,
-                            imageSrc: './img/pigs/idleRight.png',
-                        },
-                        hitLeft: {
-                            frameRate: 2,
-                            frameBuffer: 1,
-                            loop: false,
-                            autoPlay: false,
-                            imageSrc: './img/pigs/hitLeft.png',
-                        },
-                        hitRight: {
-                            frameRate: 2,
-                            frameBuffer: 1,
-                            loop: false,
-                            autoPlay: false,
-                            imageSrc: './img/pigs/hitRight.png',
-                        },
-                        deadRight: {
-                            frameRate: 4,
-                            frameBuffer: 1,
-                            loop: false,
-                            autoPlay: false,
-                            imageSrc: './img/pigs/deadRight.png',
-                        },
-                    }
                 })
             ]
             player.pigs = pigs
@@ -304,74 +278,29 @@ let levels = {
                     imageSrc: './img/pigs/idleLeft.png',
                     frameRate: 11,
                     frameBuffer: 1,
-                    die: (index) => pigDie(index, 'Left'),
+                    die: (index) => pigDie(index),
                     position: {
                         x: 125,
                         y: 445
                     },
+                    direction: 'Left',
                     size: {
                         width: 35,
                         height: 35
-                    },
-                    animations: {
-                        idle: {
-                            frameRate: 11,
-                            frameBuffer: 1,
-                            loop: false,
-                            autoPlay: false,
-                            imageSrc: './img/pigs/idleLeft.png',
-                        },
-                        hitLeft: {
-                            frameRate: 2,
-                            frameBuffer: 1,
-                            loop: false,
-                            autoPlay: false,
-                            imageSrc: './img/pigs/hitLeft.png',
-                        },
-                        deadLeft: {
-                            frameRate: 4,
-                            frameBuffer: 1,
-                            loop: false,
-                            autoPlay: false,
-                            imageSrc: './img/pigs/deadLeft.png',
-                        }
                     }
                 }),
                 new Pig({
                     imageSrc: './img/pigs/idleRight.png',
                     frameRate: 11,
                     frameBuffer: 1,
-                    die: (index) => pigDie(index, 'Right'),
                     position: {
                         x: 567,
                         y: 445
                     },
+                    direction: 'Right',
                     size: {
                         width: 35,
                         height: 35
-                    },
-                    animations: {
-                        idle: {
-                            frameRate: 11,
-                            frameBuffer: 1,
-                            loop: false,
-                            autoPlay: false,
-                            imageSrc: './img/pigs/idleRight.png',
-                        },
-                        hitRight: {
-                            frameRate: 2,
-                            frameBuffer: 1,
-                            loop: false,
-                            autoPlay: false,
-                            imageSrc: './img/pigs/hitRight.png',
-                        },
-                        deadRight: {
-                            frameRate: 4,
-                            frameBuffer: 1,
-                            loop: false,
-                            autoPlay: false,
-                            imageSrc: './img/pigs/deadRight.png',
-                        },
                     }
                 })
             ]

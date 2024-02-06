@@ -1,12 +1,13 @@
 class Pig extends Sprite {
     constructor({ position, size, die,
-        imageSrc, frameRate, animations, loop
+        imageSrc, frameRate, loop, direction
     }) {
-        super({ imageSrc, frameRate, animations, loop })
+        super({ imageSrc, frameRate, loop })
         this.position = position
         this.size = size
         this.lives = 3
         this.die = die
+        this.direction = direction
     }
 
     update() {
@@ -26,35 +27,55 @@ class Pig extends Sprite {
     hitted() {
         this.lives--
 
-        if (player.lastDirection === 'left') {
-            this.switchSprite('hitLeft')
+        this.animate('hit')
+        setTimeout(() => {
             if (this.lives === 0) {
-                setTimeout(() => {
-                    this.die(pigs.indexOf(this))
-                    this.switchSprite('deadLeft')
-                }, 200)
-            }
+                this.die(pigs.indexOf(this))
+                this.animate('dead')
+            } else
+                this.animate('idle')
+        }, 200)
+    }
+    switchSprite(animation, animationName) {
+        if (this.currentAnimation === animationName) return
+        this.currentFrame = 0
+        this.image.src = animation.imageSrc
+        this.frameRate = animation.frameRate
+        this.frameBuffer = animation.frameBuffer
+        this.loop = animation.loop
+        this.currentAnimation = animationName
+    }
+    animate(animationName) {
+        const playerDirection = player.lastDirection.charAt(0).toUpperCase() + player.lastDirection.slice(1)
+        const pigDirection = this.direction
+
+        if (animationName === 'hit' && playerDirection !== pigDirection) {
+            this.direction = playerDirection
         }
-        else {
-            this.switchSprite('hitRight')
-            if (this.lives === 0) {
-                setTimeout(() => {
-                    this.die(pigs.indexOf(this))
-                    this.switchSprite('deadRight')
-                }, 200)
+        const animationList = {
+            idle: {
+                frameRate: 11,
+                frameBuffer: 1,
+                loop: false,
+                autoPlay: false,
+                imageSrc: `./img/pigs/idle${pigDirection}.png`,
+            },
+            hit: {
+                frameRate: 2,
+                frameBuffer: 1,
+                loop: false,
+                autoPlay: false,
+                imageSrc: `./img/pigs/hit${playerDirection}.png`,
+            },
+            dead: {
+                frameRate: 4,
+                frameBuffer: 1,
+                loop: false,
+                autoPlay: false,
+                imageSrc: `./img/pigs/dead${playerDirection}.png`,
             }
         }
 
-        if (this.lives !== 0)
-            setTimeout(() => this.switchSprite('idle'), 200);
-    }
-    switchSprite(name) {
-        if (this.image === this.animations[name].image) return
-        this.currentFrame = 0
-        this.image = this.animations[name].image
-        this.frameRate = this.animations[name].frameRate
-        this.frameBuffer = this.animations[name].frameBuffer
-        this.loop = this.animations[name].loop
-        this.currentAnimation = this.animations[name]
+        this.switchSprite(animationList[animationName], animationName)
     }
 }

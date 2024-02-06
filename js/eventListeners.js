@@ -32,7 +32,7 @@ window.addEventListener('keydown', (e) => {
             break
         case 'e':
             keys.e.pressed = true
-            player.hitPig()
+            pigs && player.hitPig()
             break
     }
 })
