@@ -101,12 +101,12 @@ const player = new Player({
     }
 })
 
-function pigDie(index) {
+function pigDie(index, diraction) {
     const deadPig = pigs[index]
     deadPigs.push(new Sprite({
         position: deadPig.hitbox.position,
         frameRate: 1,
-        imageSrc: './img/pigs/lyingRight.png',
+        imageSrc: `./img/pigs/lying${diraction}.png`,
     }))
 
     pigs.splice(index, 1)
@@ -190,7 +190,7 @@ let levels = {
 
             pigs = [
                 new Pig({
-                    imageSrc: './img/pigs/idle.png',
+                    imageSrc: './img/pigs/idleRight.png',
                     frameRate: 11,
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
@@ -208,7 +208,7 @@ let levels = {
                             frameBuffer: 1,
                             loop: false,
                             autoPlay: false,
-                            imageSrc: './img/pigs/idle.png',
+                            imageSrc: './img/pigs/idleRight.png',
                         },
                         hitLeft: {
                             frameRate: 2,
@@ -299,17 +299,80 @@ let levels = {
             ]
             player.diamonds = diamonds
 
-            boxes = [
-                new Sprite({
+            pigs = [
+                new Pig({
+                    imageSrc: './img/pigs/idleLeft.png',
+                    frameRate: 11,
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index, 'Left'),
                     position: {
-                        x: 330,
-                        y: 450
+                        x: 125,
+                        y: 445
                     },
-                    frameRate: 1,
-                    frameBuffer: 5,
-                    loop: false,
-                    autoPlay: false,
-                    imageSrc: './img/items/box.png',
+                    size: {
+                        width: 35,
+                        height: 35
+                    },
+                    animations: {
+                        idle: {
+                            frameRate: 11,
+                            frameBuffer: 1,
+                            loop: false,
+                            autoPlay: false,
+                            imageSrc: './img/pigs/idleLeft.png',
+                        },
+                        hitLeft: {
+                            frameRate: 2,
+                            frameBuffer: 1,
+                            loop: false,
+                            autoPlay: false,
+                            imageSrc: './img/pigs/hitLeft.png',
+                        },
+                        deadLeft: {
+                            frameRate: 4,
+                            frameBuffer: 1,
+                            loop: false,
+                            autoPlay: false,
+                            imageSrc: './img/pigs/deadLeft.png',
+                        }
+                    }
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleRight.png',
+                    frameRate: 11,
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index, 'Right'),
+                    position: {
+                        x: 567,
+                        y: 445
+                    },
+                    size: {
+                        width: 35,
+                        height: 35
+                    },
+                    animations: {
+                        idle: {
+                            frameRate: 11,
+                            frameBuffer: 1,
+                            loop: false,
+                            autoPlay: false,
+                            imageSrc: './img/pigs/idleRight.png',
+                        },
+                        hitRight: {
+                            frameRate: 2,
+                            frameBuffer: 1,
+                            loop: false,
+                            autoPlay: false,
+                            imageSrc: './img/pigs/hitRight.png',
+                        },
+                        deadRight: {
+                            frameRate: 4,
+                            frameBuffer: 1,
+                            loop: false,
+                            autoPlay: false,
+                            imageSrc: './img/pigs/deadRight.png',
+                        },
+                    }
                 })
             ]
             player.boxes = boxes
