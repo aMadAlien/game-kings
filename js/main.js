@@ -23,13 +23,25 @@ if (!mapWindow.classList.contains('move-left')) {
 
         if (userData) {
             const lastLevel = userData.lastLevel
-            if (lastLevel > i) {
-                newLevelBtn.classList.add('level-done')
-            } else if (lastLevel === i) {
-                newLevelBtn.classList.add('level-current')
+
+            if (lastLevel >= i) {
+                if (lastLevel > i) {
+                    newLevelBtn.classList.add('level-done')
+                } else if (lastLevel === i) {
+                    newLevelBtn.classList.add('level-current')
+                }
+                newLevelBtn.addEventListener('click', () => {
+                    runLevel(i)
+                    mapWindow.classList.add('move-left')
+                })
             } else {
                 newLevelBtn.classList.add('level-blocked')
             }
+        } else {
+            if (i === 1) {
+                newLevelBtn.classList.add('level-current')
+            }
+            newLevelBtn.classList.add('level-blocked')
         }
 
         levelsContainer.appendChild(newLevelBtn)

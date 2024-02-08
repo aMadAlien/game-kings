@@ -101,14 +101,12 @@ const player = new Player({
     }
 })
 
-function pigDie(index, diraction) {
 function pigDie(index) {
     const direction = player.lastDirection.charAt(0).toUpperCase() + player.lastDirection.slice(1)
     const deadPig = pigs[index]
     deadPigs.push(new Sprite({
         position: deadPig.hitbox.position,
         frameRate: 1,
-        imageSrc: `./img/pigs/lying${diraction}.png`,
         imageSrc: `./img/pigs/lying${direction}.png`,
     }))
 
@@ -293,6 +291,7 @@ let levels = {
                     imageSrc: './img/pigs/idleRight.png',
                     frameRate: 11,
                     frameBuffer: 1,
+                    die: (index) => pigDie(index),
                     position: {
                         x: 567,
                         y: 445
@@ -304,7 +303,7 @@ let levels = {
                     }
                 })
             ]
-            player.boxes = boxes
+            player.pigs = pigs
 
             background = new Sprite({
                 position: {
@@ -474,5 +473,8 @@ function animate() {
     c.restore()
 }
 
-levels[level].init()
-animate()
+function runLevel(levelId) {
+    level = levelId
+    levels[level].init()
+    animate()
+}
