@@ -426,7 +426,9 @@ let overvay = {
 }
 
 function animate() {
-    window.requestAnimationFrame(animate)
+    if (document.getElementById('map-window').classList.contains('move-left')) {
+        window.requestAnimationFrame(animate)
+    }
 
     c.fillStyle = 'white'
     c.fillRect(0, 0, canvas.width, canvas.height)

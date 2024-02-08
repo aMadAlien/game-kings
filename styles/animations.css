@@ -17,9 +17,9 @@
 
 @keyframes move-right {
     from {
-        left: 0%
+        left: -100%
     }
     to {
-        left: -100%
+        left: 0%
     }
 }

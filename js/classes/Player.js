@@ -200,6 +200,7 @@ class Player extends Sprite {
         }
     }
     restart() {
+        document.getElementById('menu').classList.add('d-none')
         gsap.to(overvay, {
             opacity: 1,
             onComplete: () => {

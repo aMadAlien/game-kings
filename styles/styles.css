@@ -27,25 +27,6 @@ body {
     display: inline-block;
 }
 
-#restart {
-    position: absolute;
-    top: 20px;
-    right: 220px;
-
-    display: inline-block;
-    padding: 5px 10px;
-    font-size: 16px;
-    font-weight: 600;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    border: 2px solid #948b8b;
-    border-radius: 5px;
-    color: #ffffff;
-    background-color: #948b8b;
-    transition: background-color 0.3s ease;
-}
-
 #restart:hover {
     background-color: #66696b;
 }
@@ -98,20 +79,20 @@ body {
     align-items: center;
 }
 
-.level-btn {
-    font-size: 1rem !important;
-    padding: .75rem 1rem !important;
+.modal {
+    border: 5px outset #212131;
+    background-color: #383852;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px 50px;
+    z-index: 20;
 }
 
-.level-blocked {
-    background-color: #66696b;
-    cursor: not-allowed;
-}
-
-.level-done {
-    background-color: #229522;
-}
-
-.level-current {
-    background-color: #39a2d6;
+.menu-block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
 }
