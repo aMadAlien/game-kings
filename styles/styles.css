@@ -75,15 +75,30 @@ body {
     width: 100%;
     height: 100%;
     position: absolute;
-    transition: all 4s ease-out;
 }
 
 #welcome-window {
     background: url("/img/start_window.jpg") no-repeat;
     background-size: cover;
     background-position: center;
-    transition: all 0.5s ease;
-    /* left: -80%; */
     z-index: 100;
 }
 
+#map-window {
+    background-color: #383852;
+    z-index: 90;
+}
+
+.map-container {
+    margin: 70px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.level-btn {
+    font-size: 1rem !important;
+    padding: .75rem 1rem !important;
+}
