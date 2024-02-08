@@ -1,0 +1,89 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #333;
+    width: 99%;
+    height: 100%;
+}
+
+.score-block {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    font-size: 24px;
+}
+
+.lives-block {
+    position: absolute;
+    top: 50px;
+    left: 40px;
+    font-size: 24px;
+}
+
+#score,
+#lives {
+    display: inline-block;
+}
+
+#restart {
+    position: absolute;
+    top: 20px;
+    right: 220px;
+
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #948b8b;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: #948b8b;
+    transition: background-color 0.3s ease;
+}
+
+#restart:hover {
+    background-color: #66696b;
+}
+
+/* ============================= */
+
+.wrapper {
+    width: 100%;
+    height: 97vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #7b6f6f;
+}
+
+.game-block {
+    position: relative;
+    width: 70rem;
+    height: 40rem;
+
+    overflow: hidden;
+    background-color: #df9494;
+}
+
+.window {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: all 4s ease-out;
+}
+
+#welcome-window {
+    background: url("/img/start_window.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.5s ease;
+    /* left: -80%; */
+    z-index: 100;
+}
+

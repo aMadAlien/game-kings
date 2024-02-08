@@ -1,0 +1,25 @@
+.move-left {
+    animation: move-left 1s ease-in-out 1 normal 0s forwards;
+}
+
+@keyframes move-left {
+    from {
+        left: 0%
+    }
+    to {
+        left: -100%
+    }
+}
+
+.move-right {
+    animation: move-right 1s ease-in-out 1 normal 0s forwards;
+}
+
+@keyframes move-right {
+    from {
+        left: 0%
+    }
+    to {
+        left: -100%
+    }
+}
