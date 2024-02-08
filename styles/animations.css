@@ -1,5 +1,5 @@
 .move-left {
-    animation: move-left 1s ease-in-out 1 normal 0s forwards;
+    animation: move-left .7s ease-in-out 1 normal 0s forwards;
 }
 
 @keyframes move-left {
@@ -12,7 +12,7 @@
 }
 
 .move-right {
-    animation: move-right 1s ease-in-out 1 normal 0s forwards;
+    animation: move-right .7s ease-in-out 1 normal 0s forwards;
 }
 
 @keyframes move-right {

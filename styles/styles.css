@@ -102,3 +102,16 @@ body {
     font-size: 1rem !important;
     padding: .75rem 1rem !important;
 }
+
+.level-blocked {
+    background-color: #66696b;
+    cursor: not-allowed;
+}
+
+.level-done {
+    background-color: #229522;
+}
+
+.level-current {
+    background-color: #39a2d6;
+}
