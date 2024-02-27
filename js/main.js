@@ -29,14 +29,24 @@ const levelsContainer = document.getElementsByClassName('map-container')[0]
 function listenLevelSelect() {
     for (let i = 1; i <= levelsContainer.childNodes.length; i++) {
         const levelBtn = levelsContainer.childNodes[i - 1]
+        const lastLevel = JSON.parse(localStorage.getItem('game-data')).lastLevel
 
-        if (userData.lastLevel >= i) {
+        if (lastLevel >= i) {
+            if (lastLevel > i) {
+                levelBtn.classList.remove('level-current')
+                levelBtn.classList.add('level-done')
+            } else if (lastLevel === i) {
+                levelBtn.classList.remove('level-blocked')
+                levelBtn.classList.add('level-current')
+            }
+
             levelBtn.addEventListener('click', () => {
-                console.log('listen');
                 mapWindow.classList.add('move-left')
                 mapWindow.classList.remove('move-right')
                 runLevel(i)
             })
+        } else {
+            levelBtn.classList.add('level-blocked')
         }
     }
 }
@@ -47,18 +57,6 @@ function createLevelsMap(length) {
         newLevelBtn.setAttribute('role', 'button')
         newLevelBtn.setAttribute('class', 'level-btn btn')
         newLevelBtn.innerText = i
-
-        const lastLevel = userData.lastLevel
-
-        if (lastLevel >= i) {
-            if (lastLevel > i) {
-                newLevelBtn.classList.add('level-done')
-            } else if (lastLevel === i) {
-                newLevelBtn.classList.add('level-current')
-            }
-        } else {
-            newLevelBtn.classList.add('level-blocked')
-        }
 
         levelsContainer.appendChild(newLevelBtn)
     }
@@ -81,4 +79,5 @@ backToMapBtn.addEventListener('click', () => {
     mapWindow.classList.add('move-right')
     mapWindow.classList.remove('move-left')
     menuModal.classList.add('d-none')
+    listenLevelSelect()
 })

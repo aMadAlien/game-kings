@@ -87,6 +87,7 @@ const player = new Player({
                         player.lives = 3
                         document.getElementById('lives').textContent = player.lives
                         level++
+                        localStorage.setItem('game-data', JSON.stringify({ lastLevel: level }))
                         if (level > Object.keys(levels).length) level = 1
                         levels[level].init()
                         player.switchSprite('idleRight')
@@ -425,9 +426,11 @@ let overvay = {
     opacity: 0
 }
 
+let animFrame
+
 function animate() {
     if (document.getElementById('map-window').classList.contains('move-left')) {
-        window.requestAnimationFrame(animate)
+        animFrame = window.requestAnimationFrame(animate)
     }
 
     c.fillStyle = 'white'
@@ -475,8 +478,22 @@ function animate() {
     c.restore()
 }
 
+function resetGameSession() {
+    traps = []
+    pigs = []
+    deadPigs = []
+    player.score = 0
+    document.getElementById('score').textContent = player.score
+    player.lives = 3
+    document.getElementById('lives').textContent = player.lives
+    player.switchSprite('idleRight')
+    player.preventInput = false
+}
+
 function runLevel(levelId) {
     level = levelId
+    resetGameSession()
+    window.cancelAnimationFrame(animFrame)
     levels[level].init()
     animate()
 }
