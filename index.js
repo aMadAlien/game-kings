@@ -8,7 +8,52 @@ canvas.height = 64 * 9
 let parsedCollistions, collisionBlocks, background
 let doors, diamonds, traps, boxes, pigs
 let deadPigs = []
+const liveBar = new Sprite({
+        position: {
+            x: 10,
+            y: 10
+        },
+        frameBuffer: 1,
+        loop: false,
+        autoPlay: false,
+        imageSrc: './img/live-and-coins/live-bar.png',
+    })
 
+let lives = [
+    new Sprite({
+        position: {
+            x: 21,
+            y: 20
+        },
+        frameRate: 8,
+        frameBuffer: 11,
+        loop: true,
+        autoPlay: true,
+        imageSrc: './img/live-and-coins/small-heart-idle.png',
+    }),
+    new Sprite({
+        position: {
+            x: 32,
+            y: 20
+        },
+        frameRate: 8,
+        frameBuffer: 12,
+        loop: true,
+        autoPlay: true,
+        imageSrc: './img/live-and-coins/small-heart-idle.png',
+    }),
+    new Sprite({
+        position: {
+            x: 42,
+            y: 20
+        },
+        frameRate: 8,
+        frameBuffer: 13,
+        loop: true,
+        autoPlay: true,
+        imageSrc: './img/live-and-coins/small-heart-idle.png',
+    })
+]
 
 const player = new Player({
     imageSrc: './img/king/idle.png',
@@ -85,7 +130,6 @@ const player = new Player({
                         player.score = 0
                         document.getElementById('score').textContent = player.score
                         player.lives = 3
-                        document.getElementById('lives').textContent = player.lives
                         level++
                         localStorage.setItem('game-data', JSON.stringify({ lastLevel: level }))
                         if (level > Object.keys(levels).length) level = 1
@@ -467,6 +511,12 @@ function animate() {
         door.draw()
     })
 
+    liveBar.draw()
+    lives.forEach((live, liveId) => {
+        if (liveId+1 > player.lives) return
+        live.draw()
+    })
+
     player.handleInput(keys)
     player.draw()
     player.update()
@@ -485,7 +535,6 @@ function resetGameSession() {
     player.score = 0
     document.getElementById('score').textContent = player.score
     player.lives = 3
-    document.getElementById('lives').textContent = player.lives
     player.switchSprite('idleRight')
     player.preventInput = false
 }

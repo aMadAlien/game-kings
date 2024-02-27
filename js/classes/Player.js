@@ -113,10 +113,8 @@ class Player extends Sprite {
         }
     }
     updateLives() {
-        document.getElementById('lives').textContent = this.lives
         if (this.lives === 0) {
             this.restart()
-            this.lives = 3
         }
     }
     checkPigs() {
@@ -207,7 +205,7 @@ class Player extends Sprite {
                 gsap.to(overvay, {
                     opacity: 0,
                 })
-                document.getElementById('lives').textContent = this.lives
+                this.lives = 3
                 this.score = 0
                 document.getElementById('score').textContent = this.score
                 player.onRestart()
