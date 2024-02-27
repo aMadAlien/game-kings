@@ -16,10 +16,12 @@ window.addEventListener("load", (event) => {
 // listen click on start btn
 const openMapBtn = document.getElementById('open-map-btn');
 const welcomeWindow = document.getElementById('welcome-window')
+const bgAudioElem = document.getElementById('bg-audio')
 
 if (!welcomeWindow.classList.contains('move-left')) {
     openMapBtn.addEventListener('click', () => {
         welcomeWindow.classList.add('move-left')
+        bgAudioElem.play()
     })
 }
 
