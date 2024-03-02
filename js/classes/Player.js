@@ -46,6 +46,7 @@ class Player extends Sprite {
 
         this.updateHitbox()
         this.updateLives()
+        updateScore(this.score)
 
         this.checkForVerticalCollisions()
         this.diamonds && this.checkDiamonds()

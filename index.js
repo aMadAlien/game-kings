@@ -8,18 +8,20 @@ canvas.height = 64 * 9
 let parsedCollistions, collisionBlocks, background
 let doors, diamonds, traps, boxes, pigs
 let deadPigs = []
-const liveBar = new Sprite({
-        position: {
-            x: 10,
-            y: 10
-        },
-        frameBuffer: 1,
-        loop: false,
-        autoPlay: false,
-        imageSrc: './img/live-and-coins/live-bar.png',
-    })
+let scores = []
 
-let lives = [
+const liveBar = new Sprite({
+    position: {
+        x: 10,
+        y: 10
+    },
+    frameBuffer: 1,
+    loop: false,
+    autoPlay: false,
+    imageSrc: './img/live-and-coins/live-bar.png',
+})
+
+const lives = [
     new Sprite({
         position: {
             x: 21,
@@ -54,6 +56,18 @@ let lives = [
         imageSrc: './img/live-and-coins/small-heart-idle.png',
     })
 ]
+
+const scoreSprite = new Sprite({
+    position: {
+        x: 25,
+        y: 38
+    },
+    frameRate: 8,
+    frameBuffer: 14,
+    loop: true,
+    autoPlay: true,
+    imageSrc: './img/live-and-coins/score-diamond-idle.png',
+})
 
 const player = new Player({
     imageSrc: './img/king/idle.png',
@@ -470,6 +484,28 @@ let overvay = {
     opacity: 0
 }
 
+function updateScore(num) {
+    const scoreNums = String(num).split('')
+
+    scores = scoreNums.map((num, numId) => {
+        const scoreBarPos = 25;
+        const scoreBarWidth = 18;
+        const scoreNumWidth = 6;
+
+        return new Sprite({
+            position: {
+                x: scoreBarPos + scoreBarWidth + scoreNumWidth * numId,
+                y: 41
+            },
+            frameRate: 1,
+            frameBuffer: 1,
+            loop: false,
+            autoPlay: false,
+            imageSrc: `./img/numbers/num-${num}.png`,
+        })
+    });
+}
+
 let animFrame
 
 function animate() {
@@ -513,8 +549,13 @@ function animate() {
 
     liveBar.draw()
     lives.forEach((live, liveId) => {
-        if (liveId+1 > player.lives) return
+        if (liveId + 1 > player.lives) return
         live.draw()
+    })
+
+    scoreSprite.draw()
+    scores.forEach(s => {
+        s.draw()
     })
 
     player.handleInput(keys)
