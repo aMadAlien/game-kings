@@ -171,6 +171,7 @@ function pigDie(index) {
     pigs.splice(index, 1)
 }
 
+let level = 1
 let levels = {
     1: {
         init: () => {
@@ -188,7 +189,7 @@ let levels = {
                     },
                     frameRate: 10,
                     frameBuffer: 9,
-                    imageSrc: './img/items/diamond.png',
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
                 }),
                 new Sprite({
                     position: {
@@ -197,7 +198,7 @@ let levels = {
                     },
                     frameRate: 10,
                     frameBuffer: 9,
-                    imageSrc: './img/items/diamond.png',
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
                 })
             ]
             player.diamonds = diamonds
@@ -242,7 +243,7 @@ let levels = {
                     },
                     frameRate: 10,
                     frameBuffer: 9,
-                    imageSrc: './img/items/diamond.png',
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
                 })
             ]
             player.diamonds = diamonds
@@ -306,7 +307,7 @@ let levels = {
                     },
                     frameRate: 10,
                     frameBuffer: 9,
-                    imageSrc: './img/items/diamond.png',
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
                 }),
                 new Sprite({
                     position: {
@@ -315,7 +316,7 @@ let levels = {
                     },
                     frameRate: 10,
                     frameBuffer: 9,
-                    imageSrc: './img/items/diamond.png',
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
                 }),
                 new Sprite({
                     position: {
@@ -324,11 +325,12 @@ let levels = {
                     },
                     frameRate: 10,
                     frameBuffer: 9,
-                    imageSrc: './img/items/diamond.png',
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
                 })
             ]
             player.diamonds = diamonds
 
+            hearts = [
                 new Sprite({
                     position: {
                         x: 500,
@@ -415,7 +417,7 @@ let levels = {
                     },
                     frameRate: 10,
                     frameBuffer: 9,
-                    imageSrc: './img/items/diamond.png',
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
                 }),
                 new Sprite({
                     position: {
@@ -424,7 +426,7 @@ let levels = {
                     },
                     frameRate: 10,
                     frameBuffer: 9,
-                    imageSrc: './img/items/diamond.png',
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
                 }),
                 new Sprite({
                     position: {
@@ -433,7 +435,7 @@ let levels = {
                     },
                     frameRate: 10,
                     frameBuffer: 9,
-                    imageSrc: './img/items/diamond.png',
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
                 })
             ]
             player.diamonds = diamonds
