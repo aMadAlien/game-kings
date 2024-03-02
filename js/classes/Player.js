@@ -1,6 +1,6 @@
 class Player extends Sprite {
     constructor({
-        collisionBlocks = [], diamonds, traps, boxes, onRestart,
+        collisionBlocks = [], diamonds, hearts, traps, boxes, onRestart,
         imageSrc, frameRate, animations, loop, pigs
     }) {
         super({ imageSrc, frameRate, animations, loop })
@@ -24,6 +24,7 @@ class Player extends Sprite {
 
         this.collisionBlocks = collisionBlocks
         this.diamonds = diamonds
+        this.hearts = hearts
         this.score = 0
 
         this.traps = traps
@@ -50,6 +51,7 @@ class Player extends Sprite {
 
         this.checkForVerticalCollisions()
         this.diamonds && this.checkDiamonds()
+        this.hearts && this.checkHearts()
         this.traps && this.checkTraps()
         this.boxes && this.checkBoxes()
         this.pigs && this.checkPigs()
@@ -208,7 +210,6 @@ class Player extends Sprite {
                 })
                 this.lives = 3
                 this.score = 0
-                document.getElementById('score').textContent = this.score
                 player.onRestart()
             }
         })
@@ -226,7 +227,25 @@ class Player extends Sprite {
                 if (diamondId > -1) {
                     this.diamonds.splice(diamondId, 1)
                     this.score++
-                    document.getElementById('score').textContent = this.score
+                }
+            }
+        }
+    }
+    checkHearts() {
+        if (this.lives >= 3) return
+
+        for (let i = 0; i < this.hearts.length; i++) {
+            const diamond = this.hearts[i]
+            if (
+                player.hitbox.position.x <= diamond.position.x + diamond.width &&
+                player.hitbox.position.x + player.hitbox.width >= diamond.position.x &&
+                player.hitbox.position.y + player.hitbox.height >= diamond.position.y &&
+                player.hitbox.position.y <= diamond.position.y + diamond.height
+            ) {
+                const diamondId = this.hearts.indexOf(diamond)
+                if (diamondId > -1) {
+                    this.hearts.splice(diamondId, 1)
+                    this.lives++
                 }
             }
         }

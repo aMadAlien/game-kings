@@ -6,7 +6,7 @@ canvas.width = 64 * 16
 canvas.height = 64 * 9
 
 let parsedCollistions, collisionBlocks, background
-let doors, diamonds, traps, boxes, pigs
+let doors, diamonds, traps, boxes, pigs, hearts
 let deadPigs = []
 let scores = []
 
@@ -142,7 +142,6 @@ const player = new Player({
                         pigs = []
                         deadPigs = []
                         player.score = 0
-                        document.getElementById('score').textContent = player.score
                         player.lives = 3
                         level++
                         localStorage.setItem('game-data', JSON.stringify({ lastLevel: level }))
@@ -329,6 +328,18 @@ let levels = {
                 })
             ]
             player.diamonds = diamonds
+
+                new Sprite({
+                    position: {
+                        x: 500,
+                        y: 500
+                    },
+                    frameRate: 8,
+                    frameBuffer: 8,
+                    imageSrc: './img/live-and-coins/heartIdle.png',
+                })
+            ]
+            player.hearts = hearts
 
             pigs = [
                 new Pig({
@@ -526,6 +537,10 @@ function animate() {
         diamond.draw()
     })
 
+    hearts?.forEach(heart => {
+        heart.draw()
+    })
+
     traps?.forEach(trap => {
         trap.draw()
     })
@@ -574,7 +589,6 @@ function resetGameSession() {
     pigs = []
     deadPigs = []
     player.score = 0
-    document.getElementById('score').textContent = player.score
     player.lives = 3
     player.switchSprite('idleRight')
     player.preventInput = false
