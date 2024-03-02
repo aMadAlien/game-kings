@@ -138,11 +138,7 @@ const player = new Player({
                 gsap.to(overvay, {
                     opacity: 1,
                     onComplete: () => {
-                        traps = []
-                        pigs = []
-                        deadPigs = []
-                        player.score = 0
-                        player.lives = 3
+                        resetGameSession()
                         level++
                         localStorage.setItem('game-data', JSON.stringify({ lastLevel: level }))
                         if (level > Object.keys(levels).length) level = 1
@@ -590,15 +586,16 @@ function resetGameSession() {
     traps = []
     pigs = []
     deadPigs = []
+    hearts = []
     player.score = 0
     player.lives = 3
-    player.switchSprite('idleRight')
-    player.preventInput = false
 }
 
 function runLevel(levelId) {
     level = levelId
     resetGameSession()
+    player.switchSprite('idleRight')
+    player.preventInput = false
     window.cancelAnimationFrame(animFrame)
     levels[level].init()
     animate()
