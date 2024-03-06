@@ -63,11 +63,11 @@ class Player extends Sprite {
 
         if (keys.d.pressed) {
             player.switchSprite('runRight')
-            player.velocity.x = 5
+            player.velocity.x = 3
             player.lastDirection = 'right'
         } else if (keys.a.pressed) {
             player.switchSprite('runLeft')
-            player.velocity.x = -5
+            player.velocity.x = -3
             player.lastDirection = 'left'
         } else if (keys.e.pressed) {
             if (player.lastDirection === 'left')
@@ -91,11 +91,11 @@ class Player extends Sprite {
     updateHitbox() {
         this.hitbox = {
             position: {
-                x: this.position.x + 58,
-                y: this.position.y + 34
+                x: this.position.x + 20,
+                y: this.position.y + 18
             },
-            width: 50,
-            height: 53
+            width: 23,
+            height: 26
         }
     }
     hitPig() {

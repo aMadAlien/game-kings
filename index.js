@@ -174,24 +174,23 @@ let levels = {
             parsedCollistions = collisionsLevel1.parse2D()
             collisionBlocks = parsedCollistions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
+            player.position.x = 320
+            player.position.y = 330
 
             if (player.currentAnimation) player.currentAnimation.isActive = false
 
             diamonds = [
                 new Sprite({
                     position: {
-                        x: 567,
-                        y: 350
+                        x: 600,
+                        y: 330
                     },
                     frameRate: 10,
                     frameBuffer: 9,
                     imageSrc: './img/live-and-coins/diamondIdle.png',
                 }),
                 new Sprite({
-                    position: {
-                        x: 367,
-                        y: 220
-                    },
+                    position: { x: 468, y: 288 },
                     frameRate: 10,
                     frameBuffer: 9,
                     imageSrc: './img/live-and-coins/diamondIdle.png',
@@ -204,13 +203,13 @@ let levels = {
                     x: 0,
                     y: 0
                 },
-                imageSrc: './img/backgroundLevel1.png'
+                imageSrc: './img/levels/level-1.png'
             })
             doors = [
                 new Sprite({
                     position: {
-                        x: 767,
-                        y: 270
+                        x: 640,
+                        y: 296
                     },
                     frameRate: 5,
                     frameBuffer: 5,
@@ -223,10 +222,10 @@ let levels = {
     },
     2: {
         init: () => {
-            parsedCollistions = collisionsLevel1.parse2D()
+            parsedCollistions = collisionsLevel2.parse2D()
             collisionBlocks = parsedCollistions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
-            player.position.x = 200
+            player.position.x = 255
             player.position.y = 200
 
             if (player.currentAnimation) player.currentAnimation.isActive = false
@@ -234,72 +233,8 @@ let levels = {
             diamonds = [
                 new Sprite({
                     position: {
-                        x: 150,
+                        x: 400,
                         y: 270
-                    },
-                    frameRate: 10,
-                    frameBuffer: 9,
-                    imageSrc: './img/live-and-coins/diamondIdle.png',
-                })
-            ]
-            player.diamonds = diamonds
-
-            pigs = [
-                new Pig({
-                    imageSrc: './img/pigs/idleRight.png',
-                    frameRate: 11,
-                    frameBuffer: 1,
-                    die: (index) => pigDie(index),
-                    direction: 'Right',
-                    position: {
-                        x: 567,
-                        y: 315
-                    },
-                    size: {
-                        width: 35,
-                        height: 35
-                    },
-                })
-            ]
-            player.pigs = pigs
-
-            background = new Sprite({
-                position: {
-                    x: 0,
-                    y: 0
-                },
-                imageSrc: './img/backgroundLevel1.png'
-            })
-            doors = [
-                new Sprite({
-                    position: {
-                        x: 767,
-                        y: 270
-                    },
-                    frameRate: 5,
-                    frameBuffer: 5,
-                    loop: false,
-                    autoPlay: false,
-                    imageSrc: './img/doorOpen.png',
-                })
-            ]
-        }
-    },
-    3: {
-        init: () => {
-            parsedCollistions = collisionsLevel2.parse2D()
-            collisionBlocks = parsedCollistions.createObjectsFrom2D()
-            player.collisionBlocks = collisionBlocks
-            player.position.x = 96
-            player.position.y = 113
-
-            if (player.currentAnimation) player.currentAnimation.isActive = false
-
-            diamonds = [
-                new Sprite({
-                    position: {
-                        x: 310,
-                        y: 90
                     },
                     frameRate: 10,
                     frameBuffer: 9,
@@ -307,37 +242,21 @@ let levels = {
                 }),
                 new Sprite({
                     position: {
-                        x: 180,
-                        y: 450
+                        x: 300,
+                        y: 410
                     },
                     frameRate: 10,
                     frameBuffer: 9,
                     imageSrc: './img/live-and-coins/diamondIdle.png',
                 }),
                 new Sprite({
-                    position: {
-                        x: 550,
-                        y: 450
-                    },
+                    position: { x: 646, y: 354 },
                     frameRate: 10,
                     frameBuffer: 9,
                     imageSrc: './img/live-and-coins/diamondIdle.png',
                 })
             ]
             player.diamonds = diamonds
-
-            hearts = [
-                new Sprite({
-                    position: {
-                        x: 500,
-                        y: 500
-                    },
-                    frameRate: 8,
-                    frameBuffer: 8,
-                    imageSrc: './img/live-and-coins/heartIdle.png',
-                })
-            ]
-            player.hearts = hearts
 
             pigs = [
                 new Pig({
@@ -346,8 +265,8 @@ let levels = {
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
                     position: {
-                        x: 125,
-                        y: 445
+                        x: 310,
+                        y: 420
                     },
                     direction: 'Left',
                     size: {
@@ -361,8 +280,8 @@ let levels = {
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
                     position: {
-                        x: 567,
-                        y: 445
+                        x: 600,
+                        y: 388
                     },
                     direction: 'Right',
                     size: {
@@ -378,14 +297,298 @@ let levels = {
                     x: 0,
                     y: 0
                 },
-                imageSrc: './img/backgroundLevel2.png'
+                imageSrc: './img/levels/level-2.png'
             })
             doors = [
                 new Sprite({
                     position: {
-                        x: 772,
-                        y: 336
+                        x: 700,
+                        y: 355
                     },
+                    frameRate: 5,
+                    frameBuffer: 5,
+                    loop: false,
+                    autoPlay: false,
+                    imageSrc: './img/doorOpen.png',
+                })
+            ]
+        }
+    },
+    3: {
+        init: () => {
+            parsedCollistions = collisionsLevel3.parse2D()
+            collisionBlocks = parsedCollistions.createObjectsFrom2D()
+            player.collisionBlocks = collisionBlocks
+            player.position.x = 350
+            player.position.y = 80
+
+            if (player.currentAnimation) player.currentAnimation.isActive = false
+
+            diamonds = [
+                new Sprite({
+                    position: {
+                        x: 400,
+                        y: 220
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 630, y: 251 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 380,
+                        y: 220
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 430,
+                        y: 285
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 470,
+                        y: 350
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 310,
+                        y: 380
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 550,
+                        y: 480
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 640,
+                        y: 460
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 690,
+                        y: 285
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 630,
+                        y: 330
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 695,
+                        y: 400
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: {
+                        x: 675,
+                        y: 400
+                    },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 740, y: 105 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 715, y: 85 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 740, y: 85 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 740, y: 65 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 715, y: 65 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 740, y: 156 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 715, y: 105 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 310, y: 331 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+            ]
+            player.diamonds = diamonds
+
+            hearts = [
+                new Sprite({
+                    position: { x: 436, y: 162 },
+                    frameRate: 8,
+                    frameBuffer: 8,
+                    imageSrc: './img/live-and-coins/heartIdle.png',
+                }),
+                new Sprite({
+                    position: {x: 617, y: 463},
+                    frameRate: 8,
+                    frameBuffer: 8,
+                    imageSrc: './img/live-and-coins/heartIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 390, y: 414 },
+                    frameRate: 8,
+                    frameBuffer: 8,
+                    imageSrc: './img/live-and-coins/heartIdle.png',
+                }),
+            ]
+            player.hearts = hearts
+
+            pigs = [
+                new Pig({
+                    imageSrc: './img/pigs/idleLeft.png',
+                    frameRate: 11,
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 394, y: 277 },
+                    direction: 'Left',
+                    size: {
+                        width: 35,
+                        height: 35
+                    }
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleRight.png',
+                    frameRate: 11,
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 450, y: 277 },
+                    direction: 'Right',
+                    size: {
+                        width: 35,
+                        height: 35
+                    }
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleLeft.png',
+                    frameRate: 11,
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 330, y: 373 },
+                    direction: 'Left',
+                    size: {
+                        width: 35,
+                        height: 35
+                    }
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleLeft.png',
+                    frameRate: 11,
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 486, y: 436 },
+                    direction: 'Left',
+                    size: {
+                        width: 35,
+                        height: 35
+                    }
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleRight.png',
+                    frameRate: 11,
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 590, y: 450 },
+                    direction: 'Left',
+                    size: {
+                        width: 35,
+                        height: 35
+                    }
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleLeft.png',
+                    frameRate: 11,
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 685, y: 149 },
+                    direction: 'Left',
+                    size: {
+                        width: 35,
+                        height: 35
+                    }
+                }),
+            ]
+            player.pigs = pigs
+
+            background = new Sprite({
+                position: {
+                    x: 0,
+                    y: 0
+                },
+                imageSrc: './img/levels/level-3.png'
+            })
+            doors = [
+                new Sprite({
+                    position: { x: 555, y: 168 },
                     frameRate: 5,
                     frameBuffer: 5,
                     loop: false,
@@ -453,7 +656,7 @@ let levels = {
                     x: 0,
                     y: 0
                 },
-                imageSrc: './img/backgroundLevel3.png'
+                imageSrc: './img/levels/level-4.png'
             })
             doors = [
                 new Sprite({
