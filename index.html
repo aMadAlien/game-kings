@@ -11,6 +11,7 @@
 <body>
     <div class="wrapper">
         <div class="game-block">
+            <div id="grid-block" class="d-none"></div>
             <!-- WELCOME -->
             <div id="welcome-window" class="window">
                 <button id="open-map-btn" class="start-btn btn" role="button">Start</button>
@@ -37,12 +38,16 @@
                 <div class="menu-block">
                     <button id="back-to-map-btn" class="btn">Open map</button>
                     <button id="restart" class="btn">Restart</button>
+                    <button id="display-grid" class="btn">Show grid</button>
+                    <button id="grid-save" class="btn d-none">Save layout</button>
+                    <button id="grid-reset" class="btn d-none">Reset layout</button>
+                    <button id="grid-cancel" class="btn d-none">Cancel grid</button>
+
                     <button id="close-menu-btn" class="btn">Back</button>
                 </div>
             </div>
         </div>
     </div>
-    <audio id="bg-audio" loop>
         <source src="audio/background.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
@@ -60,6 +65,7 @@
     <script src="js/eventListeners.js"></script>
     <script src="index.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/collisionDefine.js"></script>
 </body>
 
 </html>

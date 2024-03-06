@@ -1,0 +1,22 @@
+#grid-block {
+    width: 1024px;
+    height: 576px;
+    position: absolute;
+    z-index: 9;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: repeat(64, 16px);
+    grid-template-rows: repeat(36, 16px);
+}
+
+.grid-tile {
+    background: none;
+    border: 1px solid #0d0d3642;
+    width: 16px;
+    height: 16px;
+}
+
+.grid-tile__selected {
+    background-color: #bb272dbd;
+}
