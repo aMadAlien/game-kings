@@ -32,6 +32,22 @@ displayGridBtn.addEventListener('click', () => {
     menuModal.classList.add('d-none')
 })
 
+function selectTile(e) {
+    e.target.classList.toggle('grid-tile__selected');
+}
+
+gridBlock.addEventListener('mousedown', () => {
+    [...gridBlock.children].forEach(tile => {
+        tile.addEventListener('mouseover', selectTile);
+    });
+});
+
+gridBlock.addEventListener('mouseup', () => {
+    [...gridBlock.children].forEach(tile => {
+        tile.removeEventListener('mouseover', selectTile);
+    });
+});
+
 cancelGridBtn.addEventListener('click', () => {
     gridBlock.classList.add('d-none')
     saveGridBtn.classList.add('d-none')
