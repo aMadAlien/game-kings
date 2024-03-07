@@ -1,6 +1,6 @@
 class Pig extends Sprite {
-    constructor({ position, size, die,
-        imageSrc, frameRate, loop, direction
+    constructor({ position, size = { width: 18, height: 18 }, die,
+        imageSrc, frameRate = 11, loop, direction
     }) {
         super({ imageSrc, frameRate, loop })
         this.position = position
@@ -14,13 +14,13 @@ class Pig extends Sprite {
         this.updateHitbox()
         // this is the blue box
         c.fillStyle = 'rgba(0, 0, 255, 0.4)'
-        // c.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.size.width, this.size.height)
+        c.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.size.width, this.size.height)
     }
     updateHitbox() {
         this.hitbox = {
             position: {
-                x: this.position.x + 33,
-                y: this.position.y + 35
+                x: this.position.x + 5,
+                y: this.position.y + 9
             }
         }
     }

@@ -261,33 +261,17 @@ let levels = {
             pigs = [
                 new Pig({
                     imageSrc: './img/pigs/idleLeft.png',
-                    frameRate: 11,
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
-                    position: {
-                        x: 310,
-                        y: 420
-                    },
+                    position: { x: 310, y: 420 },
                     direction: 'Left',
-                    size: {
-                        width: 35,
-                        height: 35
-                    }
                 }),
                 new Pig({
                     imageSrc: './img/pigs/idleRight.png',
-                    frameRate: 11,
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
-                    position: {
-                        x: 600,
-                        y: 388
-                    },
+                    position: { x: 600, y: 388 },
                     direction: 'Right',
-                    size: {
-                        width: 35,
-                        height: 35
-                    }
                 })
             ]
             player.pigs = pigs
@@ -489,7 +473,7 @@ let levels = {
                     imageSrc: './img/live-and-coins/heartIdle.png',
                 }),
                 new Sprite({
-                    position: {x: 617, y: 463},
+                    position: { x: 617, y: 463 },
                     frameRate: 8,
                     frameBuffer: 8,
                     imageSrc: './img/live-and-coins/heartIdle.png',
@@ -506,75 +490,45 @@ let levels = {
             pigs = [
                 new Pig({
                     imageSrc: './img/pigs/idleLeft.png',
-                    frameRate: 11,
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
                     position: { x: 394, y: 277 },
                     direction: 'Left',
-                    size: {
-                        width: 35,
-                        height: 35
-                    }
                 }),
                 new Pig({
                     imageSrc: './img/pigs/idleRight.png',
-                    frameRate: 11,
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
-                    position: { x: 450, y: 277 },
+                    position: { x: 470, y: 277 },
                     direction: 'Right',
-                    size: {
-                        width: 35,
-                        height: 35
-                    }
                 }),
                 new Pig({
                     imageSrc: './img/pigs/idleLeft.png',
-                    frameRate: 11,
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
                     position: { x: 330, y: 373 },
                     direction: 'Left',
-                    size: {
-                        width: 35,
-                        height: 35
-                    }
                 }),
                 new Pig({
                     imageSrc: './img/pigs/idleLeft.png',
-                    frameRate: 11,
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
                     position: { x: 486, y: 436 },
                     direction: 'Left',
-                    size: {
-                        width: 35,
-                        height: 35
-                    }
                 }),
                 new Pig({
                     imageSrc: './img/pigs/idleRight.png',
-                    frameRate: 11,
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
                     position: { x: 590, y: 450 },
                     direction: 'Left',
-                    size: {
-                        width: 35,
-                        height: 35
-                    }
                 }),
                 new Pig({
                     imageSrc: './img/pigs/idleLeft.png',
-                    frameRate: 11,
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
                     position: { x: 685, y: 149 },
                     direction: 'Left',
-                    size: {
-                        width: 35,
-                        height: 35
-                    }
                 }),
             ]
             player.pigs = pigs
