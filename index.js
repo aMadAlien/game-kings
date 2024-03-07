@@ -521,7 +521,7 @@ let levels = {
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
                     position: { x: 590, y: 450 },
-                    direction: 'Left',
+                    direction: 'Right',
                 }),
                 new Pig({
                     imageSrc: './img/pigs/idleLeft.png',
@@ -554,56 +554,466 @@ let levels = {
     },
     4: {
         init: () => {
-            parsedCollistions = collisionsLevel3.parse2D()
+            parsedCollistions = collisionsLevel4.parse2D()
             collisionBlocks = parsedCollistions.createObjectsFrom2D()
             player.collisionBlocks = collisionBlocks
-            player.position.x = 750
-            player.position.y = 230
+            player.position.x = 560
+            player.position.y = 80
+            player.lastDirection = 'left'
 
             if (player.currentAnimation) player.currentAnimation.isActive = false
 
             diamonds = [
                 new Sprite({
-                    position: {
-                        x: 570,
-                        y: 200
-                    },
+                    position: { x: 870, y: 156 },
                     frameRate: 10,
                     frameBuffer: 9,
                     imageSrc: './img/live-and-coins/diamondIdle.png',
                 }),
                 new Sprite({
-                    position: {
-                        x: 800,
-                        y: 350
-                    },
+                    position: { x: 860, y: 65 },
                     frameRate: 10,
                     frameBuffer: 9,
                     imageSrc: './img/live-and-coins/diamondIdle.png',
                 }),
                 new Sprite({
-                    position: {
-                        x: 350,
-                        y: 390
-                    },
+                    position: { x: 860, y: 85 },
                     frameRate: 10,
                     frameBuffer: 9,
                     imageSrc: './img/live-and-coins/diamondIdle.png',
-                })
+                }),
+                new Sprite({
+                    position: { x: 860, y: 105 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 880, y: 65 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 880, y: 85 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 880, y: 105 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 775, y: 253 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 835, y: 286 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 775, y: 336 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 685, y: 345 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 685, y: 320 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 685, y: 295 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 685, y: 270 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 825, y: 390 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 825, y: 370 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 825, y: 350 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 825, y: 330 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 585, y: 445 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 605, y: 445 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 625, y: 445 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 645, y: 445 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 515, y: 100 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 550, y: 182 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 535, y: 202 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 515, y: 221 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 605, y: 285 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 406, y: 390 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 430, y: 390 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 455, y: 410 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 540, y: 410 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 360, y: 500 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 360, y: 525 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 335, y: 500 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 335, y: 525 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 165, y: 350 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 165, y: 330 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 210, y: 305 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 210, y: 285 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 120, y: 290 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 120, y: 270 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 100, y: 290 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 100, y: 270 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 265, y: 205 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 285, y: 205 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 305, y: 205 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 325, y: 205 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 265, y: 225 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 285, y: 225 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 305, y: 225 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 325, y: 225 },
+                    frameRate: 10,
+                    frameBuffer: 9,
+                    imageSrc: './img/live-and-coins/diamondIdle.png',
+                }),
             ]
             player.diamonds = diamonds
 
-
-            traps = [
+            hearts = [
                 new Sprite({
-                    position: {
-                        x: 400,
-                        y: 433
-                    },
-                    imageSrc: './img/items/sharpTrap.png',
-                })
+                    position: { x: 692, y: 495 },
+                    frameRate: 8,
+                    frameBuffer: 8,
+                    imageSrc: './img/live-and-coins/heartIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 455, y: 335 },
+                    frameRate: 8,
+                    frameBuffer: 8,
+                    imageSrc: './img/live-and-coins/heartIdle.png',
+                }),
+                new Sprite({
+                    position: { x: 614, y: 350 },
+                    frameRate: 8,
+                    frameBuffer: 8,
+                    imageSrc: './img/live-and-coins/heartIdle.png',
+                }),
             ]
-            player.traps = traps
+            player.hearts = hearts
+
+            pigs = [
+                new Pig({
+                    imageSrc: './img/pigs/idleLeft.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 545, y: 277 },
+                    direction: 'Left',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleLeft.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 485, y: 405 },
+                    direction: 'Left',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleRight.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 740, y: 453 },
+                    direction: 'Right',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleRight.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 770, y: 453 },
+                    direction: 'Right',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleLeft.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 725, y: 309 },
+                    direction: 'Left',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleRight.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 788, y: 149 },
+                    direction: 'Right',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleLeft.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 820, y: 149 },
+                    direction: 'Left',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleLeft.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 360, y: 389 },
+                    direction: 'Left',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleLeft.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 335, y: 389 },
+                    direction: 'Left',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleRight.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 300, y: 389 },
+                    direction: 'Right',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleRight.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 290, y: 517 },
+                    direction: 'Right',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleLeft.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 174, y: 388 },
+                    direction: 'Left',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleLeft.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 106, y: 388 },
+                    direction: 'Left',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleRight.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 286, y: 260 },
+                    direction: 'Right',
+                }),
+                new Pig({
+                    imageSrc: './img/pigs/idleRight.png',
+                    frameBuffer: 1,
+                    die: (index) => pigDie(index),
+                    position: { x: 320, y: 260 },
+                    direction: 'Right',
+                }),
+            ]
+            player.pigs = pigs
+
+            // traps = [
+            //     new Sprite({
+            //         position: {
+            //             x: 400,
+            //             y: 433
+            //         },
+            //         imageSrc: './img/items/sharpTrap.png',
+            //     })
+            // ]
+            // player.traps = traps
 
             background = new Sprite({
                 position: {
@@ -614,10 +1024,7 @@ let levels = {
             })
             doors = [
                 new Sprite({
-                    position: {
-                        x: 176,
-                        y: 335
-                    },
+                    position: { x: 700, y: 168 },
                     frameRate: 5,
                     frameBuffer: 5,
                     loop: false,
@@ -696,9 +1103,9 @@ function animate() {
         heart.draw()
     })
 
-    traps?.forEach(trap => {
-        trap.draw()
-    })
+    // traps?.forEach(trap => {
+    //     trap.draw()
+    // })
 
     boxes?.forEach(box => {
         box.draw()

@@ -100,16 +100,20 @@ class Player extends Sprite {
     }
     hitPig() {
         for (let i = 0; i < this.pigs.length; i++) {
-            const kingX = this.position.x
-            const kingX2 = this.position.x + this.width
+            const kingX = this.position.x - 5
+            const kingX2 = this.position.x + this.width + 5
             const pig = this.pigs[i]
             const pigX = pig.hitbox.position.x
             const pigX2 = pigX + pig.size.width / 2
+            const pigY = pig.hitbox.position.y
+            const kingY = this.position.y
+            const kingY2 = kingY + this.hitbox.height
 
             if (
-                kingX2 === pigX || pigX2 === kingX ||
-                kingX2 > pigX2 && kingX < pigX2 ||
-                kingX > pigX && kingX < pigX2
+                (kingX2 === pigX || pigX2 === kingX ||
+                    kingX2 > pigX2 && kingX < pigX2 ||
+                    kingX > pigX && kingX < pigX2) &&
+                kingY <= pigY && pigY <= kingY2
             ) {
                 pig.hitted()
             }
