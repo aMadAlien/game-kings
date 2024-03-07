@@ -74,19 +74,25 @@ saveGridBtn.addEventListener('click', () => {
 
 const canvasCoordinatesElem = document.getElementById('get-coordinates')
 
+let getCoordinates = false
+
 canvasCoordinatesElem.addEventListener('click', () => {
+    getCoordinates = !getCoordinates
+
     canvas.classList.toggle('cursor-crosshair')
     menuModal.classList.add('d-none')
+
+    if (getCoordinates) {
+        canvas.addEventListener('click', getCursorPosition)
+    } else {
+        canvas.removeEventListener('click', getCursorPosition)
+    }
 })
 
-function getCursorPosition(canvas, event) {
+function getCursorPosition(event) {
     const rect = canvas.getBoundingClientRect()
     const x = Math.floor(event.clientX - rect.left) - 10
     const y = Math.floor(event.clientY - rect.top)
     console.log({ x, y })
     navigator.clipboard.writeText(`{ x: ${x}, y: ${y} }`)
 }
-
-canvas.addEventListener('mousedown', function (e) {
-    getCursorPosition(canvas, e)
-})
