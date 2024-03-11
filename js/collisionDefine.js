@@ -1,19 +1,23 @@
+const mode = 'production' // || 'dev'
+
 const gridBlock = document.getElementById('grid-block')
 
 const colsNum = 64
 const rowsNum = 36
 const totalTiles = colsNum * rowsNum
 
-for (let i = 0; i < totalTiles; i++) {
-    const tileBtnElem = document.createElement('button')
-    tileBtnElem.setAttribute('id', 'tile-' + (i + 1))
-    tileBtnElem.classList.add('grid-tile')
+function buildGrid() {
+    for (let i = 0; i < totalTiles; i++) {
+        const tileBtnElem = document.createElement('button')
+        tileBtnElem.setAttribute('id', 'tile-' + (i + 1))
+        tileBtnElem.classList.add('grid-tile')
 
-    tileBtnElem.addEventListener('click', () => {
-        tileBtnElem.classList.toggle('grid-tile__selected')
-    })
+        tileBtnElem.addEventListener('click', () => {
+            tileBtnElem.classList.toggle('grid-tile__selected')
+        })
 
-    gridBlock.appendChild(tileBtnElem)
+        gridBlock.appendChild(tileBtnElem)
+    }
 }
 
 
@@ -30,6 +34,10 @@ displayGridBtn.addEventListener('click', () => {
     cancelGridBtn.classList.remove('d-none')
     displayGridBtn.style.display = 'none'
     menuModal.classList.add('d-none')
+
+    if (!gridBlock.hasChildNodes()) {
+        buildGrid()
+    }
 })
 
 function selectTile(e) {
@@ -95,4 +103,11 @@ function getCursorPosition(event) {
     const y = Math.floor(event.clientY - rect.top)
     console.log({ x, y })
     navigator.clipboard.writeText(`{ x: ${x}, y: ${y} }`)
+}
+
+
+
+if (mode === 'production') {
+    displayGridBtn.style.display = 'none'
+    canvasCoordinatesElem.style.display = 'none'
 }
