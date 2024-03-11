@@ -13,8 +13,8 @@ class Pig extends Sprite {
     update() {
         this.updateHitbox()
         // this is the blue box
-        c.fillStyle = 'rgba(0, 0, 255, 0.4)'
-        c.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.size.width, this.size.height)
+        // c.fillStyle = 'rgba(0, 0, 255, 0.4)'
+        // c.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.size.width, this.size.height)
     }
     updateHitbox() {
         this.hitbox = {
