@@ -58,7 +58,7 @@ canvas {
 }
 
 #welcome-window {
-    background: url("/img/start_window.jpg") no-repeat;
+    background: url("../img/start_window.jpg") no-repeat;
     background-size: cover;
     background-position: center;
     z-index: 100;
