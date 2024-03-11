@@ -110,9 +110,12 @@ class Player extends Sprite {
             const kingY2 = kingY + this.hitbox.height
 
             if (
-                (kingX2 === pigX || pigX2 === kingX ||
-                    kingX2 > pigX2 && kingX < pigX2 ||
-                    kingX > pigX && kingX < pigX2) &&
+                (
+                    this.lastDirection === 'left' &&
+                    (kingX === pigX2 || pigX2 > kingX && pigX2 < kingX2) ||
+                    this.lastDirection === 'right' &&
+                    (kingX2 === pigX || pigX > kingX && pigX < kingX2)
+                ) &&
                 kingY <= pigY && pigY <= kingY2
             ) {
                 pig.hitted()
@@ -140,12 +143,12 @@ class Player extends Sprite {
 
                 if (this.lastDirection === 'left') {
                     const offset = pig.hitbox.position.x + pig.size.width - this.hitbox.position.x
-                    this.position.x += 20 + offset
+                    this.position.x += 5 + offset
                     this.switchSprite('hitLeft')
                 } else {
                     distance = -20
                     const offset = this.hitbox.position.x + this.hitbox.width - pig.hitbox.position.x
-                    this.position.x -= 20 + offset
+                    this.position.x -= 5 + offset
                     this.switchSprite('hitRight')
                 }
 

@@ -263,7 +263,7 @@ let levels = {
                     imageSrc: './img/pigs/idleLeft.png',
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
-                    position: { x: 310, y: 420 },
+                    position: { x: 350, y: 420 },
                     direction: 'Left',
                 }),
                 new Pig({
@@ -921,14 +921,14 @@ let levels = {
                     imageSrc: './img/pigs/idleRight.png',
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
-                    position: { x: 770, y: 453 },
+                    position: { x: 780, y: 453 },
                     direction: 'Right',
                 }),
                 new Pig({
                     imageSrc: './img/pigs/idleLeft.png',
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
-                    position: { x: 725, y: 309 },
+                    position: { x: 720, y: 309 },
                     direction: 'Left',
                 }),
                 new Pig({
@@ -942,7 +942,7 @@ let levels = {
                     imageSrc: './img/pigs/idleLeft.png',
                     frameBuffer: 1,
                     die: (index) => pigDie(index),
-                    position: { x: 820, y: 149 },
+                    position: { x: 840, y: 149 },
                     direction: 'Left',
                 }),
                 new Pig({
