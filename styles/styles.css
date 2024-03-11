@@ -48,7 +48,7 @@ canvas {
     height: 40rem;
 
     overflow: hidden;
-    background-color: #383852;
+    background-color: #403850;
 }
 
 .window {
@@ -71,6 +71,8 @@ canvas {
 
 #game-window {
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .map-container {
