@@ -25,6 +25,7 @@ class Pig extends Sprite {
         }
     }
     hitted() {
+        if (!this.lives) return
         this.lives--
 
         this.animate('hit')

@@ -2,6 +2,7 @@ window.addEventListener('keydown', (e) => {
     if (player.preventInput) return
     switch (e.key.toLocaleLowerCase()) {
         case 'w':
+        case 'ц':
         case 'arrowup':
             for (let i = 0; i < doors.length; i++) {
                 const door = doors[i]
@@ -23,14 +24,17 @@ window.addEventListener('keydown', (e) => {
             if (player.velocity.y === 0) player.velocity.y = -13
             break
         case 'a':
+        case 'ф':
         case 'arrowleft':
             keys.a.pressed = true
             break
         case 'd':
+        case 'в':
         case 'arrowright':
             keys.d.pressed = true
             break
         case 'e':
+        case 'у':
             keys.e.pressed = true
             pigs && player.hitPig()
             break
@@ -40,14 +44,17 @@ window.addEventListener('keydown', (e) => {
 window.addEventListener('keyup', (e) => {
     switch (e.key.toLocaleLowerCase()) {
         case 'a':
+        case 'ф':
         case 'arrowleft':
             keys.a.pressed = false
             break
         case 'd':
+        case 'в':
         case 'arrowright':
             keys.d.pressed = false
             break
         case 'e':
+        case 'у':
             keys.e.pressed = false
             break
     }
