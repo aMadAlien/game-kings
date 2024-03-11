@@ -5,3 +5,7 @@
 .cursor-crosshair {
     cursor: crosshair;
 }
+
+.center {
+    margin: 0 auto;
+}

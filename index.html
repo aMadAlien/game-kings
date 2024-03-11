@@ -38,6 +38,8 @@
                 <div class="menu-block">
                     <button id="back-to-map-btn" class="btn">Open map</button>
                     <button id="restart" class="btn">Restart</button>
+                    <button id="instruction-btn" class="btn">Instruction</button>
+
                     <button id="display-grid" class="btn">Show grid</button>
                     <button id="grid-save" class="btn d-none">Save layout</button>
                     <button id="grid-reset" class="btn d-none">Reset layout</button>
@@ -47,11 +49,19 @@
                     <button id="close-menu-btn" class="btn">Back</button>
                 </div>
             </div>
+
+            <!-- INSTRUCTION -->
+            <div id="instruction" class="modal d-none">
+                <div class="instruction-text">
+                    <p>Use the arrows or A, W, D keys to navigate.</p>
+                    <p>Press the "E" key to attack pigs.</p>
+                </div>
+                <button id="close-instruction-btn" class="btn center">Back</button>
+            </div>
         </div>
     </div>
         <source src="audio/background.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
-    </audio>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"

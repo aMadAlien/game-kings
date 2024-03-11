@@ -83,3 +83,16 @@ backToMapBtn.addEventListener('click', () => {
     menuModal.classList.add('d-none')
     listenLevelSelect()
 })
+
+const instructionBtn = document.getElementById('instruction-btn')
+const instructionModal = document.getElementById('instruction')
+const closeInstructionBtn = document.getElementById('close-instruction-btn')
+
+instructionBtn.addEventListener('click', () => {
+    instructionModal.classList.remove('d-none')
+    menuModal.classList.add('d-none')
+})
+
+closeInstructionBtn.addEventListener('click', () => {
+    instructionModal.classList.add('d-none')
+})
