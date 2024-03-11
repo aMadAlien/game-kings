@@ -1153,6 +1153,7 @@ function resetGameSession() {
     hearts = []
     player.score = 0
     player.lives = 3
+    updateScore(player.score)
 }
 
 function runLevel(levelId) {

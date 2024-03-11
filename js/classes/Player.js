@@ -47,7 +47,6 @@ class Player extends Sprite {
 
         this.updateHitbox()
         this.updateLives()
-        updateScore(this.score)
 
         this.checkForVerticalCollisions()
         this.diamonds && this.checkDiamonds()
@@ -217,6 +216,7 @@ class Player extends Sprite {
                 })
                 this.lives = 3
                 this.score = 0
+                updateScore(this.score)
                 player.onRestart()
             }
         })
@@ -234,6 +234,7 @@ class Player extends Sprite {
                 if (diamondId > -1) {
                     this.diamonds.splice(diamondId, 1)
                     this.score++
+                    updateScore(this.score)
                 }
             }
         }
